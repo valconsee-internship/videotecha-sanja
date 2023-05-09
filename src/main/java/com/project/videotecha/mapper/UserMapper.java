@@ -11,11 +11,7 @@ public class UserMapper {
         newUser.setLastName(registrationData.getLastName());
         newUser.setEmail(registrationData.getEmail());
         newUser.setPassword(registrationData.getPassword());
-        if (registrationData.getUserTypeName().equals("ADMIN")) {
-            newUser.setUserType(UserType.ADMIN);
-        } else {
-            newUser.setUserType(UserType.REGISTERED);
-        }
+        newUser.setUserType(UserType.valueOf(registrationData.getUserTypeName()));
         return newUser;
     }
 }
