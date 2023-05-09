@@ -6,4 +6,6 @@ import java.util.Collection;
 
 public interface UserService {
     Collection<User> getAll();
+
+    User registerUser(User newUser);
 }

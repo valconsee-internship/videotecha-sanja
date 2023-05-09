@@ -1,21 +1,22 @@
 package com.project.videotecha.service.impl;
 
 import com.project.videotecha.model.User;
-import com.project.videotecha.repository.UserRepository;
 import com.project.videotecha.service.AuthenticationService;
+import com.project.videotecha.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public AuthenticationServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+
+    public AuthenticationServiceImpl(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
     public User registerUser(User newUser) {
-        return userRepository.save(newUser);
+        return userService.registerUser(newUser);
     }
 
 }
