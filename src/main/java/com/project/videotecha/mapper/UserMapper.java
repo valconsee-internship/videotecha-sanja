@@ -4,7 +4,9 @@ import com.project.videotecha.dto.RegistrationDataDto;
 import com.project.videotecha.model.User;
 import com.project.videotecha.model.enums.UserType;
 
-public class UserMapper {
+public final class UserMapper {
+    private UserMapper() { }
+
     public static User mapRegistrationDataDtoToUser(RegistrationDataDto registrationData) {
         User newUser = new User();
         newUser.setFirstName(registrationData.getFirstName());
