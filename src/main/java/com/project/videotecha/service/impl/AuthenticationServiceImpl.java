@@ -15,8 +15,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public User registerUser(User newUser) {
-        userRepository.save(newUser);
-        return userRepository.findByEmail(newUser.getEmail());
+        return userRepository.save(newUser);
     }
 
 }
