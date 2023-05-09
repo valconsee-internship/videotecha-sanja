@@ -2,7 +2,6 @@ package com.project.videotecha.model;
 
 import com.project.videotecha.model.enums.UserType;
 import jakarta.persistence.*;
-import org.springframework.lang.NonNull;
 
 import java.util.Objects;
 
