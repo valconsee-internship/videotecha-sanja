@@ -27,8 +27,7 @@ public final class MovieMapper {
         for (MovieGenre movieGenre : movie.getMovieGenres()) {
             genreNames.add(movieGenre.name());
         }
-        return new MovieDto(movie.getId(), movie.getName(), movie.getDirector(), movie.getLength(),
-                movie.getDescription(), genreNames);
+        return new MovieDto(movie, genreNames);
     }
 
     public static Movie mapMovieDtoToMovie(MovieDto movieDto) {
