@@ -6,4 +6,6 @@ public interface MovieService {
     Movie create(Movie mapMovieCreationDtoToMovie);
 
     Movie update(Movie mapMovieDtoToMovie);
+
+    void delete(Long id);
 }

@@ -24,9 +24,18 @@ public class MovieServiceImpl implements MovieService {
     @Transactional
     public Movie update(Movie movie) {
         if (movieRepository.findByIdAndDeletedFalse(movie.getId()).isEmpty()) {
-            throw new EntityNotFoundException("Movie with ID " + movie.getId() + "not found");
+            throw new EntityNotFoundException("Movie with ID " + movie.getId() + " not found");
         }
         return movieRepository.save(movie);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        Movie movie = movieRepository.findByIdAndDeletedFalse(id)
+                .orElseThrow(() -> new EntityNotFoundException("Movie with ID " + id + " not found"));
+        movie.setDeleted(true);
+        movieRepository.save(movie);
     }
 
 
