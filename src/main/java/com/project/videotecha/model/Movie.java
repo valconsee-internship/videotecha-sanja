@@ -25,7 +25,8 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String name, String director, Integer length, String description, List<MovieGenre> movieGenres) {
+    public Movie(Long id, String name, String director, Integer length, String description, List<MovieGenre> movieGenres) {
+        this.id = id;
         this.name = name;
         this.director = director;
         this.length = length;

@@ -6,6 +6,7 @@ import com.project.videotecha.mapper.MovieMapper;
 import com.project.videotecha.service.MovieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -22,7 +23,12 @@ public class MovieController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MovieDto createMovie(@RequestBody MovieCreationDto movieCreationDto) {
+    public MovieDto create(@RequestBody MovieCreationDto movieCreationDto) {
         return MovieMapper.mapToDto(movieService.create(MovieMapper.mapMovieCreationDtoToMovie(movieCreationDto)));
+    }
+
+    @PutMapping
+    public MovieDto update(@RequestBody MovieDto movieDto) {
+        return MovieMapper.mapToDto(movieService.update(MovieMapper.mapMovieDtoToMovie(movieDto)));
     }
 }
