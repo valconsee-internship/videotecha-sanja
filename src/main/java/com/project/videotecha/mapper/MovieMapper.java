@@ -38,4 +38,12 @@ public final class MovieMapper {
         return new Movie(movieDto.getId(), movieDto.getName(), movieDto.getDirector(), movieDto.getLength(),
                 movieDto.getDescription(), movieGenres);
     }
+
+    public static List<MovieDto> mapToMovieDtos(List<Movie> movies) {
+        List<MovieDto> movieDtos = new ArrayList<>();
+        for (Movie m : movies) {
+            movieDtos.add(mapToDto(m));
+        }
+        return movieDtos;
+    }
 }

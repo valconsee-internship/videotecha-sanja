@@ -7,6 +7,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
@@ -38,5 +40,14 @@ public class MovieServiceImpl implements MovieService {
         movieRepository.save(movie);
     }
 
+    @Override
+    public List<Movie> getAll() {
+        return movieRepository.findByDeletedFalse();
+    }
 
+    @Override
+    public Movie getById(Long id) {
+        return movieRepository.findByIdAndDeletedFalse(id)
+                .orElseThrow(() -> new EntityNotFoundException(MOVIE_NOT_FOUND_MESSAGE + id));
+    }
 }
