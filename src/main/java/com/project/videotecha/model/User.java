@@ -1,7 +1,12 @@
 package com.project.videotecha.model;
 
 import com.project.videotecha.model.enums.UserType;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.util.Objects;
 
@@ -18,9 +23,11 @@ public class User {
     private String password;
     private UserType userType;
 
-    public User() {}
+    public User() {
+    }
 
-    public User(String firstName, String lastName, String email, String password, UserType userType) {
+    public User(Long id, String firstName, String lastName, String email, String password, UserType userType) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
