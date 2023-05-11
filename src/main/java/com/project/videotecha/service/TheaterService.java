@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface TheaterService {
     List<Theater> getAll();
+
+    Theater getById(Long id);
 }

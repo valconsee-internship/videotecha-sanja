@@ -4,6 +4,7 @@ import com.project.videotecha.dto.TheaterDto;
 import com.project.videotecha.mapper.TheaterMapper;
 import com.project.videotecha.service.TheaterService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +22,10 @@ public class TheaterController {
     @GetMapping
     public List<TheaterDto> getAll() {
         return TheaterMapper.mapToTheaterDtos(theaterService.getAll());
+    }
+
+    @GetMapping("/{id}")
+    public TheaterDto getById(@PathVariable Long id) {
+        return TheaterMapper.mapToTheaterDto(theaterService.getById(id));
     }
 }
