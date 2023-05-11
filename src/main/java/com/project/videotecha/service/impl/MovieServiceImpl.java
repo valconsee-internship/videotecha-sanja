@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
+    private static final String MOVIE_NOT_FOUND_MESSAGE = "Not found movie with ID ";
 
     public MovieServiceImpl(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -26,7 +27,7 @@ public class MovieServiceImpl implements MovieService {
     @Transactional
     public Movie update(Movie movie) {
         if (movieRepository.findByIdAndDeletedFalse(movie.getId()).isEmpty()) {
-            throw new EntityNotFoundException("Movie with ID " + movie.getId() + " not found");
+            throw new EntityNotFoundException(MOVIE_NOT_FOUND_MESSAGE + movie.getId());
         }
         return movieRepository.save(movie);
     }
@@ -35,7 +36,7 @@ public class MovieServiceImpl implements MovieService {
     @Transactional
     public void delete(Long id) {
         Movie movie = movieRepository.findByIdAndDeletedFalse(id)
-                .orElseThrow(() -> new EntityNotFoundException("Movie with ID " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException(MOVIE_NOT_FOUND_MESSAGE + id));
         movie.setDeleted(true);
         movieRepository.save(movie);
     }
