@@ -47,6 +47,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Transactional
     public Movie getById(Long id) {
         return movieRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new EntityNotFoundException(MOVIE_NOT_FOUND_MESSAGE + id));
