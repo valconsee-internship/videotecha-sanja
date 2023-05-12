@@ -5,4 +5,8 @@ import com.project.videotecha.model.Projection;
 
 public interface ProjectionService {
     Projection create(ProjectionCreationDto dto);
+
+    void delete(Long id);
+
+    Projection getById(Long id);
 }

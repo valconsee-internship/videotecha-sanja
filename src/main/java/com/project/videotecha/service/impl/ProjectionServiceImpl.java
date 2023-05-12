@@ -6,6 +6,7 @@ import com.project.videotecha.repository.ProjectionRepository;
 import com.project.videotecha.service.MovieService;
 import com.project.videotecha.service.ProjectionService;
 import com.project.videotecha.service.TheaterService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,6 +35,21 @@ public class ProjectionServiceImpl implements ProjectionService {
             throw new RuntimeException("Projection is overlapping with existing projections");
         }
         return projectionRepository.save(projection);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        Projection projection = projectionRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Not found projection with ID " + id));
+        projection.setDeleted(true);
+        projectionRepository.save(projection);
+    }
+
+    @Override
+    public Projection getById(Long id) {
+        return projectionRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Not found projection with ID " + id));
     }
 
     private boolean iOverlappingWithExistingProjections(Projection projection) {
