@@ -1,4 +1,11 @@
 spring:
+  flyway:
+    locations: classpath:db
+    baseline-on-migrate: true
+    check-location: true
+    enabled: true
+    sql-migration-prefix: v
+    sql-migration-suffix: .sql
   datasource:
     url: jdbc:postgresql://localhost:5432/videotecha
     username: postgres
@@ -8,9 +15,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: yes
     hibernate:
-      ddl-auto: create-drop
-    defer-datasource-initialization: true
-  sql:
-    init:
-      mode: always
+      ddl-auto: none
+    show-sql: yes
+
