@@ -23,6 +23,7 @@ public class Projection {
     private LocalDateTime start;
     private Integer ticketPrice;
     private Boolean deleted = false;
+    private Integer availableSeats;
 
     public Projection() {
     }
@@ -34,6 +35,7 @@ public class Projection {
         this.start = start;
         this.ticketPrice = ticketPrice;
         this.deleted = deleted;
+        this.availableSeats = theater.getCapacity();
     }
 
     public Projection(LocalDateTime start, Integer ticketPrice, Movie movie, Theater theater) {
@@ -41,6 +43,7 @@ public class Projection {
         this.ticketPrice = ticketPrice;
         this.movie = movie;
         this.theater = theater;
+        this.availableSeats = theater.getCapacity();
     }
 
 
@@ -90,6 +93,14 @@ public class Projection {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public Integer getAvailableSeats() {
+        return availableSeats;
+    }
+
+    public void setAvailableSeats(Integer availableSeats) {
+        this.availableSeats = availableSeats;
     }
 
     public LocalDateTime getEnd() {

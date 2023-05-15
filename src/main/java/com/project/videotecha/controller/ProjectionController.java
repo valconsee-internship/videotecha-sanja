@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/projections")
 public class ProjectionController {
@@ -26,7 +28,7 @@ public class ProjectionController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ProjectionDto create(@RequestBody ProjectionCreationDto dto) {
-        return ProjectionMapper.mapToDto(projectionService.create(dto));
+        return ProjectionMapper.mapProjectionToProjectionDto(projectionService.create(dto));
     }
 
     @DeleteMapping("/{id}")
@@ -36,6 +38,11 @@ public class ProjectionController {
 
     @GetMapping("/{id}")
     public ProjectionDto getById(@PathVariable Long id) {
-        return ProjectionMapper.mapToDto(projectionService.getById(id));
+        return ProjectionMapper.mapProjectionToProjectionDto(projectionService.getById(id));
+    }
+
+    @GetMapping("/available")
+    public List<ProjectionDto> getProjectionsWithAvailableSeats() {
+        return ProjectionMapper.mapProjectionToProjectionDtos(projectionService.getAvailableProjections());
     }
 }

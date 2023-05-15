@@ -52,6 +52,11 @@ public class ProjectionServiceImpl implements ProjectionService {
                 .orElseThrow(() -> new EntityNotFoundException("Not found projection with ID " + id));
     }
 
+    @Override
+    public List<Projection> getAvailableProjections() {
+        return projectionRepository.findAvailableProjections();
+    }
+
     private boolean iOverlappingWithExistingProjections(Projection projection) {
         List<Projection> theaterProjections = projectionRepository.findByTheaterIdAndDeletedFalse(projection.getTheater().getId());
         for (Projection p : theaterProjections) {

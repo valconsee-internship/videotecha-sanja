@@ -10,6 +10,7 @@ public class ProjectionDto {
     private TheaterDto theater;
     private LocalDateTime start;
     private Integer ticketPrice;
+    private Integer availableSeats;
 
     public ProjectionDto() {
     }
@@ -18,6 +19,7 @@ public class ProjectionDto {
         this.id = p.getId();
         this.start = p.getStart();
         this.ticketPrice = p.getTicketPrice();
+        this.availableSeats = p.getAvailableSeats();
     }
 
     public Long getId() {
@@ -58,5 +60,13 @@ public class ProjectionDto {
 
     public void setTicketPrice(Integer ticketPrice) {
         this.ticketPrice = ticketPrice;
+    }
+
+    public Integer getAvailableSeats() {
+        return availableSeats;
+    }
+
+    public void setAvailableSeats(Integer availableSeats) {
+        this.availableSeats = availableSeats;
     }
 }
