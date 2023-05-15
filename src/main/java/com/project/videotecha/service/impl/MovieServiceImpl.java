@@ -28,9 +28,16 @@ public class MovieServiceImpl implements MovieService {
     @Override
     @Transactional
     public Movie update(Movie movie) {
-        if (movieRepository.findByIdAndDeletedFalse(movie.getId()).isEmpty()) {
-            throw new EntityNotFoundException(MOVIE_NOT_FOUND_MESSAGE + movie.getId());
+        Movie oldMovie = movieRepository.findByIdAndDeletedFalse(movie.getId())
+                .orElseThrow(() -> new EntityNotFoundException(MOVIE_NOT_FOUND_MESSAGE + movie.getId()));
+        List<Projection> projections = oldMovie.getProjections()
+                .stream()
+                .filter(p -> !p.getDeleted() && !hasPassed(p))
+                .toList();
+        if (!projections.isEmpty()) {
+            throw new RuntimeException("Movie has future projections, it cannot be updated");
         }
+        movie.setProjections(oldMovie.getProjections());
         return movieRepository.save(movie);
     }
 
