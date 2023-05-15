@@ -57,7 +57,8 @@ public class MovieServiceImpl implements MovieService {
         movieRepository.save(movie);
     }
 
-    private boolean hasPassed(Projection p) {
+    @Override
+    public boolean hasPassed(Projection p) {
         return p.getEnd().isBefore(LocalDateTime.now());
     }
 

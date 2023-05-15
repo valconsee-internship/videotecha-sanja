@@ -54,7 +54,10 @@ public class ProjectionServiceImpl implements ProjectionService {
 
     @Override
     public List<Projection> getAvailableProjections() {
-        return projectionRepository.findAvailableProjections();
+        return projectionRepository.findAvailableProjections()
+                .stream()
+                .filter(p -> !p.getDeleted() && !movieService.hasPassed(p))
+                .toList();
     }
 
     private boolean iOverlappingWithExistingProjections(Projection projection) {
