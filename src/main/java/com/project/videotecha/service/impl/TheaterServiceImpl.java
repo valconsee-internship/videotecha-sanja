@@ -23,7 +23,7 @@ public class TheaterServiceImpl implements TheaterService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Theater getById(Long id) {
         return theaterRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Theater with ID " + id + " not found"));
