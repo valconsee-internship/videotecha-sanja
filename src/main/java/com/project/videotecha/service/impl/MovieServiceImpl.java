@@ -28,13 +28,8 @@ public class MovieServiceImpl implements MovieService {
     @Override
     @Transactional
     public Movie update(Movie movie) {
-        Movie oldMovie = movieRepository.findByIdAndDeletedFalse(movie.getId())
-                .orElseThrow(() -> new EntityNotFoundException(MOVIE_NOT_FOUND_MESSAGE + movie.getId()));
-        List<Projection> projections = oldMovie.getProjections()
-                .stream()
-                .filter(p -> !p.getDeleted() && !hasPassed(p))
-                .toList();
-        if (!projections.isEmpty()) {
+        Movie oldMovie = getById(movie.getId());
+        if (isProjectionOverlappingWithExistingProjections(movie)) {
             throw new RuntimeException("Movie has future projections, it cannot be updated");
         }
         movie.setProjections(oldMovie.getProjections());
@@ -44,17 +39,18 @@ public class MovieServiceImpl implements MovieService {
     @Override
     @Transactional
     public void delete(Long id) {
-        Movie movie = movieRepository.findByIdAndDeletedFalse(id)
-                .orElseThrow(() -> new EntityNotFoundException(MOVIE_NOT_FOUND_MESSAGE + id));
-        List<Projection> projections = movie.getProjections()
-                .stream()
-                .filter(p -> !p.getDeleted() && !hasPassed(p))
-                .toList();
-        if (!projections.isEmpty()) {
+        Movie movie = getById(id);
+        if (isProjectionOverlappingWithExistingProjections(movie)) {
             throw new RuntimeException("Movie has future projections, it cannot be deleted");
         }
         movie.setDeleted(true);
         movieRepository.save(movie);
+    }
+
+    private boolean isProjectionOverlappingWithExistingProjections(Movie movie) {
+        return movie.getProjections()
+                .stream()
+                .anyMatch(p -> !p.getDeleted() && !hasPassed(p));
     }
 
     @Override
