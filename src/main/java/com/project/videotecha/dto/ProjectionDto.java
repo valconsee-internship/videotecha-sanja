@@ -1,7 +1,5 @@
 package com.project.videotecha.dto;
 
-import com.project.videotecha.model.Projection;
-
 import java.time.LocalDateTime;
 
 public class ProjectionDto {
@@ -13,13 +11,6 @@ public class ProjectionDto {
     private Integer availableSeats;
 
     public ProjectionDto() {
-    }
-
-    public ProjectionDto(Projection p) {
-        this.id = p.getId();
-        this.start = p.getStart();
-        this.ticketPrice = p.getTicketPrice();
-        this.availableSeats = p.getAvailableSeats();
     }
 
     public Long getId() {

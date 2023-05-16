@@ -1,7 +1,5 @@
 package com.project.videotecha.dto;
 
-import com.project.videotecha.model.Movie;
-
 import java.util.List;
 
 public class MovieDto {
@@ -13,15 +11,6 @@ public class MovieDto {
     private List<String> movieGenres;
 
     public MovieDto() {
-    }
-
-    public MovieDto(Movie movie, List<String> genres) {
-        this.id = movie.getId();
-        this.name = movie.getName();
-        this.director = movie.getDirector();
-        this.length = movie.getLength();
-        this.description = movie.getDescription();
-        this.movieGenres = genres;
     }
 
     public Long getId() {

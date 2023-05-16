@@ -11,7 +11,11 @@ public class ProjectionMapper {
     }
 
     public static ProjectionDto mapProjectionToProjectionDto(Projection projection) {
-        ProjectionDto dto = new ProjectionDto(projection);
+        ProjectionDto dto = new ProjectionDto();
+        dto.setId(projection.getId());
+        dto.setStart(projection.getStart());
+        dto.setTicketPrice(projection.getTicketPrice());
+        dto.setAvailableSeats(projection.getAvailableSeats());
         dto.setMovie(MovieMapper.mapToDto(projection.getMovie()));
         dto.setTheater(TheaterMapper.mapToTheaterDto(projection.getTheater()));
         return dto;
