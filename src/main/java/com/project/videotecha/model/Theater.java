@@ -1,7 +1,6 @@
 package com.project.videotecha.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,7 +16,7 @@ public class Theater {
     private Long id;
     private String name;
     private Integer capacity;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "theater")
+    @OneToMany(mappedBy = "theater")
     private List<Projection> projections = new ArrayList<>();
 
     public Theater() {

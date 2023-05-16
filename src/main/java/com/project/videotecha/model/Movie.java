@@ -2,7 +2,6 @@ package com.project.videotecha.model;
 
 import com.project.videotecha.model.enums.MovieGenre;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,7 +21,7 @@ public class Movie {
     private String description;
     private Boolean deleted = false;
     private List<MovieGenre> movieGenres;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
+    @OneToMany(mappedBy = "movie")
     private List<Projection> projections = new ArrayList<>();
 
     public Movie() {
