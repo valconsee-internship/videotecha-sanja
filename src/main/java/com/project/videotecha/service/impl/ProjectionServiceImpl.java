@@ -10,7 +10,6 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -62,12 +61,8 @@ public class ProjectionServiceImpl implements ProjectionService {
 
     private boolean iOverlappingWithExistingProjections(Projection projection) {
         List<Projection> theaterProjections = projectionRepository.findByTheaterIdAndDeletedFalse(projection.getTheater().getId());
-        for (Projection p : theaterProjections) {
-            LocalDateTime end = p.getStart().plusMinutes(p.getMovie().getLength());
-            if (projection.getStart().isBefore(end) && projection.getEnd().isAfter(p.getStart())) {
-                return true;
-            }
-        }
-        return false;
+        return theaterProjections
+                .stream()
+                .anyMatch(p -> projection.getStart().isBefore(p.getEnd()) && projection.getEnd().isAfter(p.getStart()));
     }
 }

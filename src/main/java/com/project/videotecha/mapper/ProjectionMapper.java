@@ -3,7 +3,6 @@ package com.project.videotecha.mapper;
 import com.project.videotecha.dto.ProjectionDto;
 import com.project.videotecha.model.Projection;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectionMapper {
@@ -19,10 +18,6 @@ public class ProjectionMapper {
     }
 
     public static List<ProjectionDto> mapProjectionToProjectionDtos(List<Projection> availableProjections) {
-        List<ProjectionDto> projectionDtos = new ArrayList<>();
-        for (Projection p : availableProjections) {
-            projectionDtos.add(mapProjectionToProjectionDto(p));
-        }
-        return projectionDtos;
+        return availableProjections.stream().map(ProjectionMapper::mapProjectionToProjectionDto).toList();
     }
 }
