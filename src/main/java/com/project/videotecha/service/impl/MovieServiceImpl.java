@@ -29,7 +29,7 @@ public class MovieServiceImpl implements MovieService {
     @Transactional
     public Movie update(Movie movie) {
         Movie oldMovie = getById(movie.getId());
-        if (isProjectionOverlappingWithExistingProjections(movie)) {
+        if (hasActiveProjections(movie)) {
             throw new RuntimeException("Movie has future projections, it cannot be updated");
         }
         movie.setProjections(oldMovie.getProjections());
@@ -40,14 +40,14 @@ public class MovieServiceImpl implements MovieService {
     @Transactional
     public void delete(Long id) {
         Movie movie = getById(id);
-        if (isProjectionOverlappingWithExistingProjections(movie)) {
+        if (hasActiveProjections(movie)) {
             throw new RuntimeException("Movie has future projections, it cannot be deleted");
         }
         movie.setDeleted(true);
         movieRepository.save(movie);
     }
 
-    private boolean isProjectionOverlappingWithExistingProjections(Movie movie) {
+    private boolean hasActiveProjections(Movie movie) {
         return movie.getProjections()
                 .stream()
                 .anyMatch(p -> !p.getDeleted() && !hasPassed(p));

@@ -1,7 +1,9 @@
 package com.project.videotecha.service.impl;
 
 import com.project.videotecha.dto.ProjectionCreationDto;
+import com.project.videotecha.model.Movie;
 import com.project.videotecha.model.Projection;
+import com.project.videotecha.model.Theater;
 import com.project.videotecha.repository.ProjectionRepository;
 import com.project.videotecha.service.MovieService;
 import com.project.videotecha.service.ProjectionService;
@@ -28,9 +30,10 @@ public class ProjectionServiceImpl implements ProjectionService {
     @Override
     @Transactional
     public Projection create(ProjectionCreationDto dto) {
-        Projection projection = new Projection(dto.getStart(), dto.getTicketPrice(),
-                movieService.getById(dto.getMovieId()), theaterService.getById(dto.getTheaterId()));
-        if (iOverlappingWithExistingProjections(projection)) {
+        Movie movie = movieService.getById(dto.getMovieId());
+        Theater theater = theaterService.getById(dto.getTheaterId());
+        Projection projection = new Projection(dto.getStart(), dto.getTicketPrice(), movie, theater);
+        if (isOverlappingWithExistingProjections(projection)) {
             throw new RuntimeException("Projection is overlapping with existing projections");
         }
         return projectionRepository.save(projection);
@@ -59,7 +62,7 @@ public class ProjectionServiceImpl implements ProjectionService {
                 .toList();
     }
 
-    private boolean iOverlappingWithExistingProjections(Projection projection) {
+    private boolean isOverlappingWithExistingProjections(Projection projection) {
         List<Projection> theaterProjections = projectionRepository.findByTheaterIdAndDeletedFalse(projection.getTheater().getId());
         return theaterProjections
                 .stream()
