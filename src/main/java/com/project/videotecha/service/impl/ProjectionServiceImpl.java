@@ -42,8 +42,7 @@ public class ProjectionServiceImpl implements ProjectionService {
     @Override
     @Transactional
     public void delete(Long id) {
-        Projection projection = projectionRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Not found projection with ID " + id));
+        Projection projection = getById(id);
         projection.setDeleted(true);
         projectionRepository.save(projection);
     }
