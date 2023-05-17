@@ -5,12 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="movie")
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,8 @@ public class Movie {
     private String description;
     private Boolean deleted = false;
     private List<MovieGenre> movieGenres;
+    @OneToMany(mappedBy = "movie")
+    private List<Projection> projections = new ArrayList<>();
 
     public Movie() {
     }
@@ -32,6 +34,7 @@ public class Movie {
         this.length = length;
         this.description = description;
         this.movieGenres = movieGenres;
+        this.projections = new ArrayList<>();
     }
 
     public Long getId() {
@@ -88,5 +91,13 @@ public class Movie {
 
     public void setMovieGenres(List<MovieGenre> movieGenres) {
         this.movieGenres = movieGenres;
+    }
+
+    public List<Projection> getProjections() {
+        return projections;
+    }
+
+    public void setProjections(List<Projection> projections) {
+        this.projections = projections;
     }
 }

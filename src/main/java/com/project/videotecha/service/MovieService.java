@@ -1,6 +1,7 @@
 package com.project.videotecha.service;
 
 import com.project.videotecha.model.Movie;
+import com.project.videotecha.model.Projection;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface MovieService {
     List<Movie> getAll();
 
     Movie getById(Long id);
+
+    boolean hasPassed(Projection p);
 }

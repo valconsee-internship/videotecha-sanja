@@ -5,6 +5,7 @@ import com.project.videotecha.repository.TheaterRepository;
 import com.project.videotecha.service.TheaterService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class TheaterServiceImpl implements TheaterService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Theater getById(Long id) {
         return theaterRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Theater with ID " + id + " not found"));
