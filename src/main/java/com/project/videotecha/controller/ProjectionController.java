@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/projections")
+@RequestMapping("projections")
 public class ProjectionController {
     private final ProjectionService projectionService;
 
