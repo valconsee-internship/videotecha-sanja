@@ -5,4 +5,6 @@ import com.project.videotecha.model.Reservation;
 
 public interface ReservationService {
     Reservation create(ReservationCreationDto dto);
+
+    void cancel(Long id);
 }

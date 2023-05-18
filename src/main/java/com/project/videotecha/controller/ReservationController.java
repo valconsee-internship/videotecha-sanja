@@ -5,7 +5,9 @@ import com.project.videotecha.dto.ReservationDto;
 import com.project.videotecha.mapper.ReservationMapper;
 import com.project.videotecha.service.ReservationService;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -24,5 +26,10 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.CREATED)
     public ReservationDto create(@RequestBody ReservationCreationDto dto) {
         return ReservationMapper.mapToReservationDto(reservationService.create(dto));
+    }
+
+    @PutMapping("/{id}/cancel")
+    public void cancel(@PathVariable Long id) {
+        reservationService.cancel(id);
     }
 }

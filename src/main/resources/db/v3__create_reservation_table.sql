@@ -2,7 +2,6 @@ create table reservation (
        id bigserial not null,
         number_of_seats integer,
         canceled boolean,
-        ticket_price integer,
         projection_id bigint not null,
         user_id bigint not null,
         primary key (id)
