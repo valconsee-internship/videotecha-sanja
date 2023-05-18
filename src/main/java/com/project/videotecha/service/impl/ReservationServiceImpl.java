@@ -63,7 +63,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     private Reservation getById(Long id) {
-        return reservationRepository.findById(id).orElseThrow(() ->
+        return reservationRepository.findByIdAndCanceledFalse(id).orElseThrow(() ->
                 new EntityNotFoundException("Not found with reservation with ID " + id));
     }
 }
