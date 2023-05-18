@@ -1,6 +1,7 @@
 package com.project.videotecha.mapper;
 
 import com.project.videotecha.dto.RegistrationDataDto;
+import com.project.videotecha.dto.UserDto;
 import com.project.videotecha.model.User;
 import com.project.videotecha.model.enums.UserType;
 
@@ -15,5 +16,14 @@ public final class UserMapper {
         newUser.setPassword(registrationData.getPassword());
         newUser.setUserType(UserType.valueOf(registrationData.getUserTypeName()));
         return newUser;
+    }
+
+    public static UserDto mapUserToUserDto(User user) {
+        UserDto dto = new UserDto();
+        dto.setId(user.getId());
+        dto.setEmail(user.getEmail());
+        dto.setFirstName(user.getFirstName());
+        dto.setLastName(user.getLastName());
+        return dto;
     }
 }

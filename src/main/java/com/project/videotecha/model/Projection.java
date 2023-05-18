@@ -7,8 +7,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Projection {
@@ -25,6 +28,8 @@ public class Projection {
     private Integer ticketPrice;
     private Boolean deleted = false;
     private Integer availableSeats;
+    @OneToMany(mappedBy = "projection")
+    private List<Reservation> reservations = new ArrayList<>();
 
     public Projection() {
     }
@@ -106,5 +111,13 @@ public class Projection {
 
     public LocalDateTime getEnd() {
         return this.start.plusMinutes(this.movie.getLength());
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

@@ -8,4 +8,6 @@ public interface UserService {
     Collection<User> getAll();
 
     User registerUser(User newUser);
+
+    User getById(Long userId);
 }
