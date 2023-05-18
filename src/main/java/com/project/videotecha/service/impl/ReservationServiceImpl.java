@@ -11,6 +11,7 @@ import com.project.videotecha.service.ReservationService;
 import com.project.videotecha.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -29,6 +30,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    @Transactional
     public Reservation create(ReservationCreationDto dto) {
         // TODO: problem kada pristignu dva konkurenta zahteva, potrebno je implementirati zakljucavanje resursa
         if (dto.getNumberOfSeats() > MAX_NUMBER_OF_SEATS_PER_RESERVATION) {
@@ -51,6 +53,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    @Transactional
     public void cancel(Long id) {
         Reservation r = getById(id);
         LocalDateTime reservationDeadline = r.getProjection().getStart().minusHours(CANCELLING_RESERVATION_LIMIT_IN_HOURS);
