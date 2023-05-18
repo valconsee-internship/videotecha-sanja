@@ -6,7 +6,7 @@ import com.project.videotecha.model.Theater;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TheaterMapper {
+public final class TheaterMapper {
 
     private TheaterMapper() {
     }

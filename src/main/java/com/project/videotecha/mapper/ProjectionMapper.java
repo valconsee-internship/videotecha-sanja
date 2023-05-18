@@ -5,7 +5,7 @@ import com.project.videotecha.model.Projection;
 
 import java.util.List;
 
-public class ProjectionMapper {
+public final class ProjectionMapper {
 
     private ProjectionMapper() {
     }

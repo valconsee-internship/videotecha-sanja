@@ -5,7 +5,7 @@ import com.project.videotecha.model.Projection;
 import com.project.videotecha.model.Reservation;
 import com.project.videotecha.model.User;
 
-public class ReservationMapper {
+public final class ReservationMapper {
     private ReservationMapper() {
     }
 
