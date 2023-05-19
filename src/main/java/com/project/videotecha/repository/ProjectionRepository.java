@@ -12,7 +12,7 @@ public interface ProjectionRepository extends JpaRepository<Projection, Long> {
     @Query("""
             SELECT p
             FROM Projection p
-            WHERE p.deleted = False and
+            WHERE p.deleted = false and
             p.availableSeats > 0
             """)
     List<Projection> findAvailableProjections();

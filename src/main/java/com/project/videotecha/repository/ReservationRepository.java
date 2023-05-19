@@ -11,7 +11,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     @Query("""
              SELECT coalesce (sum(r.numberOfSeats), 0)
              FROM Reservation r
-             WHERE r.canceled = False and
+             WHERE r.canceled = false and
              r.user.id = :user_id and
              r.projection.id = :projection_id
             """)
