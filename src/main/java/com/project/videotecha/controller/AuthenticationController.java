@@ -1,8 +1,8 @@
 package com.project.videotecha.controller;
 
 import com.project.videotecha.dto.RegistrationDataDto;
+import com.project.videotecha.dto.UserDto;
 import com.project.videotecha.mapper.UserMapper;
-import com.project.videotecha.model.User;
 import com.project.videotecha.service.AuthenticationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,8 +22,9 @@ public class AuthenticationController {
 
     @PostMapping("registration")
     @ResponseStatus(HttpStatus.CREATED)
-    public User registerUser(@RequestBody RegistrationDataDto registrationData) {
-        return authenticationService.registerUser(UserMapper.mapRegistrationDataDtoToUser(registrationData));
+    public UserDto registerUser(@RequestBody RegistrationDataDto registrationData) {
+        return UserMapper.mapUserToUserDto(authenticationService.registerUser(UserMapper
+                .mapRegistrationDataDtoToUser(registrationData)));
     }
 
 }

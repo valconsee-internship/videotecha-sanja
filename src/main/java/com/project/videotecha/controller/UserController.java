@@ -1,6 +1,7 @@
 package com.project.videotecha.controller;
 
-import com.project.videotecha.model.User;
+import com.project.videotecha.dto.UserDto;
+import com.project.videotecha.mapper.UserMapper;
 import com.project.videotecha.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ public class UserController {
     }
 
     @GetMapping
-    public Collection<User> getAll() {
-        return userService.getAll();
+    public Collection<UserDto> getAll() {
+        return UserMapper.mapToDtos(userService.getAll());
     }
 }
