@@ -62,6 +62,8 @@ public class ReservationServiceImpl implements ReservationService {
                     String.format("User cannot cancel reservation up-to %s hours", CANCELLING_RESERVATION_LIMIT_IN_HOURS));
         }
         r.setCanceled(true);
+        int availableSeatsAfterCanceling = r.getProjection().getAvailableSeats() + r.getNumberOfSeats();
+        r.getProjection().setAvailableSeats(availableSeatsAfterCanceling);
         reservationRepository.save(r);
     }
 
