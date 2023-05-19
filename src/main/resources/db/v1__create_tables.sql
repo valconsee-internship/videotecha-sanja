@@ -37,4 +37,3 @@ create table "user" (
         primary key (id)
     );
 
-alter table if exists movie_genres add constraint fk_movie_id foreign key (movie_id) references movie (id);
