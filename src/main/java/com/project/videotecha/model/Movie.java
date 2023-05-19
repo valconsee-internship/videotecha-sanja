@@ -17,9 +17,9 @@ public class Movie {
     private Long id;
     private String name;
     private String director;
-    private Integer length;
+    private int length;
     private String description;
-    private Boolean deleted = false;
+    private boolean deleted = false;
     private List<MovieGenre> movieGenres;
     @OneToMany(mappedBy = "movie")
     private List<Projection> projections = new ArrayList<>();
@@ -27,7 +27,7 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(Long id, String name, String director, Integer length, String description, List<MovieGenre> movieGenres) {
+    public Movie(Long id, String name, String director, int length, String description, List<MovieGenre> movieGenres) {
         this.id = id;
         this.name = name;
         this.director = director;
@@ -61,11 +61,11 @@ public class Movie {
         this.director = director;
     }
 
-    public Integer getLength() {
+    public int getLength() {
         return length;
     }
 
-    public void setLength(Integer length) {
+    public void setLength(int length) {
         this.length = length;
     }
 
@@ -77,11 +77,11 @@ public class Movie {
         this.description = description;
     }
 
-    public Boolean getDeleted() {
+    public boolean getDeleted() {
         return deleted;
     }
 
-    public void setDeleted(Boolean deleted) {
+    public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
 

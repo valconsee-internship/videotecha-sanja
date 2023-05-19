@@ -7,8 +7,8 @@ public class ProjectionDto {
     private MovieDto movie;
     private TheaterDto theater;
     private LocalDateTime start;
-    private Integer ticketPrice;
-    private Integer availableSeats;
+    private int ticketPrice;
+    private int availableSeats;
 
     public ProjectionDto() {
     }
@@ -45,19 +45,19 @@ public class ProjectionDto {
         this.start = start;
     }
 
-    public Integer getTicketPrice() {
+    public int getTicketPrice() {
         return ticketPrice;
     }
 
-    public void setTicketPrice(Integer ticketPrice) {
+    public void setTicketPrice(int ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
 
-    public Integer getAvailableSeats() {
+    public int getAvailableSeats() {
         return availableSeats;
     }
 
-    public void setAvailableSeats(Integer availableSeats) {
+    public void setAvailableSeats(int availableSeats) {
         this.availableSeats = availableSeats;
     }
 }

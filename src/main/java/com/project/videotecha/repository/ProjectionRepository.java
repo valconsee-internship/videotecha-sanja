@@ -9,8 +9,11 @@ import java.util.List;
 public interface ProjectionRepository extends JpaRepository<Projection, Long> {
     List<Projection> findByTheaterIdAndDeletedFalse(Long id);
 
-    @Query("SELECT p " +
-            "FROM Projection p " +
-            "WHERE p.deleted = False and p.availableSeats > 0")
+    @Query("""
+            SELECT p
+            FROM Projection p
+            WHERE p.deleted = false and
+            p.availableSeats > 0
+            """)
     List<Projection> findAvailableProjections();
 }

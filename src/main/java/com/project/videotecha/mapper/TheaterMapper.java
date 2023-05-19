@@ -6,7 +6,7 @@ import com.project.videotecha.model.Theater;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TheaterMapper {
+public final class TheaterMapper {
 
     private TheaterMapper() {
     }
@@ -20,7 +20,7 @@ public class TheaterMapper {
     }
 
     public static TheaterDto mapToTheaterDto(Theater theater) {
-        return new TheaterDto(theater);
+        return new TheaterDto(theater.getId(), theater.getName(), theater.getCapacity());
     }
 
 }

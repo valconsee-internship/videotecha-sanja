@@ -15,14 +15,14 @@ public class Theater {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Integer capacity;
+    private int capacity;
     @OneToMany(mappedBy = "theater")
     private List<Projection> projections = new ArrayList<>();
 
     public Theater() {
     }
 
-    public Theater(Long id, String name, Integer capacity) {
+    public Theater(Long id, String name, int capacity) {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
@@ -37,7 +37,7 @@ public class Theater {
         return name;
     }
 
-    public Integer getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
