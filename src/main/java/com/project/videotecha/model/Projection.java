@@ -25,16 +25,16 @@ public class Projection {
     @JoinColumn(name = "theater_id", nullable = false)
     private Theater theater;
     private LocalDateTime start;
-    private Integer ticketPrice;
-    private Boolean deleted = false;
-    private Integer availableSeats;
+    private int ticketPrice;
+    private boolean deleted = false;
+    private int availableSeats;
     @OneToMany(mappedBy = "projection")
     private List<Reservation> reservations = new ArrayList<>();
 
     public Projection() {
     }
 
-    public Projection(Long id, Movie movie, Theater theater, LocalDateTime start, Integer ticketPrice, Boolean deleted) {
+    public Projection(Long id, Movie movie, Theater theater, LocalDateTime start, int ticketPrice, boolean deleted) {
         this.id = id;
         this.movie = movie;
         this.theater = theater;
@@ -44,14 +44,13 @@ public class Projection {
         this.availableSeats = theater.getCapacity();
     }
 
-    public Projection(LocalDateTime start, Integer ticketPrice, Movie movie, Theater theater) {
+    public Projection(LocalDateTime start, int ticketPrice, Movie movie, Theater theater) {
         this.start = start;
         this.ticketPrice = ticketPrice;
         this.movie = movie;
         this.theater = theater;
         this.availableSeats = theater.getCapacity();
     }
-
 
     public Long getId() {
         return id;
@@ -85,27 +84,27 @@ public class Projection {
         this.start = start;
     }
 
-    public Integer getTicketPrice() {
+    public int getTicketPrice() {
         return ticketPrice;
     }
 
-    public void setTicketPrice(Integer ticketPrice) {
+    public void setTicketPrice(int ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
 
-    public Boolean getDeleted() {
+    public boolean getDeleted() {
         return deleted;
     }
 
-    public void setDeleted(Boolean deleted) {
+    public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
 
-    public Integer getAvailableSeats() {
+    public int getAvailableSeats() {
         return availableSeats;
     }
 
-    public void setAvailableSeats(Integer availableSeats) {
+    public void setAvailableSeats(int availableSeats) {
         this.availableSeats = availableSeats;
     }
 

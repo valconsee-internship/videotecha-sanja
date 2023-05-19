@@ -4,7 +4,7 @@ public class ReservationDto {
     private Long id;
     private ProjectionDto projection;
     private UserDto user;
-    private Integer numberOfSeats;
+    private int numberOfSeats;
 
     public ReservationDto() {
     }
@@ -33,11 +33,11 @@ public class ReservationDto {
         this.user = user;
     }
 
-    public Integer getNumberOfSeats() {
+    public int getNumberOfSeats() {
         return numberOfSeats;
     }
 
-    public void setNumberOfSeats(Integer numberOfSeats) {
+    public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
 }

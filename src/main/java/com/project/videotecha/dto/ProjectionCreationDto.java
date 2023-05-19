@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 
 public class ProjectionCreationDto {
     private LocalDateTime start;
-    private Integer ticketPrice;
+    private int ticketPrice;
     private Long movieId;
     private Long theaterId;
 
     public ProjectionCreationDto() {
     }
 
-    public ProjectionCreationDto(LocalDateTime start, Integer ticketPrice, Long movieId, Long theaterId) {
+    public ProjectionCreationDto(LocalDateTime start, int ticketPrice, Long movieId, Long theaterId) {
         this.start = start;
         this.ticketPrice = ticketPrice;
         this.movieId = movieId;
@@ -26,11 +26,11 @@ public class ProjectionCreationDto {
         this.start = start;
     }
 
-    public Integer getTicketPrice() {
+    public int getTicketPrice() {
         return ticketPrice;
     }
 
-    public void setTicketPrice(Integer ticketPrice) {
+    public void setTicketPrice(int ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
 

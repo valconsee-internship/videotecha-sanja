@@ -1,19 +1,17 @@
 package com.project.videotecha.dto;
 
-import com.project.videotecha.model.Theater;
-
 public class TheaterDto {
     private Long id;
     private String name;
-    private Integer capacity;
+    private int capacity;
 
     public TheaterDto() {
     }
 
-    public TheaterDto(Theater t) {
-        this.id = t.getId();
-        this.name = t.getName();
-        this.capacity = t.getCapacity();
+    public TheaterDto(Long id, String name, int capacity) {
+        this.id = id;
+        this.name = name;
+        this.capacity = capacity;
     }
 
     public Long getId() {
@@ -32,11 +30,11 @@ public class TheaterDto {
         this.name = name;
     }
 
-    public Integer getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(Integer capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 }

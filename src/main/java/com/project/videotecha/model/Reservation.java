@@ -18,8 +18,8 @@ public class Reservation {
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false)
     private User user;
-    private Integer numberOfSeats;
-    private Boolean canceled = false;
+    private int numberOfSeats;
+    private boolean canceled = false;
 
     public Reservation() {
     }
@@ -48,19 +48,19 @@ public class Reservation {
         this.user = user;
     }
 
-    public Integer getNumberOfSeats() {
+    public int getNumberOfSeats() {
         return numberOfSeats;
     }
 
-    public void setNumberOfSeats(Integer numberOfSeats) {
+    public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public Boolean getCanceled() {
+    public boolean getCanceled() {
         return canceled;
     }
 
-    public void setCanceled(Boolean canceled) {
+    public void setCanceled(boolean canceled) {
         this.canceled = canceled;
     }
 }

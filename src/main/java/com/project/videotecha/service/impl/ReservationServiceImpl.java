@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
-    private static final Integer MAX_NUMBER_OF_SEATS_PER_RESERVATION = 5;
-    private static final Integer CANCELLING_RESERVATION_LIMIT_IN_HOURS = 2;
+    private static final int MAX_NUMBER_OF_SEATS_PER_RESERVATION = 5;
+    private static final int CANCELLING_RESERVATION_LIMIT_IN_HOURS = 2;
     private final ReservationRepository reservationRepository;
     private final ProjectionService projectionService;
     private final UserService userService;
@@ -36,7 +36,7 @@ public class ReservationServiceImpl implements ReservationService {
         if (dto.getNumberOfSeats() > MAX_NUMBER_OF_SEATS_PER_RESERVATION) {
             throw new RuntimeException("Max number of reserved tickets for one projection has been exceeded");
         }
-        Integer numberOfSeatsByUserIdAndProjectionId =
+        int numberOfSeatsByUserIdAndProjectionId =
                 reservationRepository.sumNumberOfSeatsByUserIdAndProjectionId(dto.getUserId(), dto.getProjectionId());
         if (numberOfSeatsByUserIdAndProjectionId + dto.getNumberOfSeats() > MAX_NUMBER_OF_SEATS_PER_RESERVATION) {
             throw new RuntimeException(String.format("Max number of reserved tickets for projection with ID %d has " +

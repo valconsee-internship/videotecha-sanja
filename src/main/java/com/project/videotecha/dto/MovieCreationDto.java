@@ -5,7 +5,7 @@ import java.util.List;
 public class MovieCreationDto {
     private String name;
     private String director;
-    private Integer length;
+    private int length;
     private String description;
     private List<String> movieGenres;
 
@@ -25,11 +25,11 @@ public class MovieCreationDto {
         this.director = director;
     }
 
-    public Integer getLength() {
+    public int getLength() {
         return length;
     }
 
-    public void setLength(Integer length) {
+    public void setLength(int length) {
         this.length = length;
     }
 

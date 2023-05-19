@@ -18,7 +18,7 @@ public final class ReservationMapper {
         return dto;
     }
 
-    public static Reservation mapToReservation(User user, Projection projection, Integer numberOfSeats) {
+    public static Reservation mapToReservation(User user, Projection projection, int numberOfSeats) {
         Reservation reservation = new Reservation();
         reservation.setUser(user);
         reservation.setProjection(projection);

@@ -20,7 +20,7 @@ public final class TheaterMapper {
     }
 
     public static TheaterDto mapToTheaterDto(Theater theater) {
-        return new TheaterDto(theater);
+        return new TheaterDto(theater.getId(), theater.getName(), theater.getCapacity());
     }
 
 }

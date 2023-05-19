@@ -3,7 +3,7 @@ package com.project.videotecha.dto;
 public class ReservationCreationDto {
     private Long projectionId;
     private Long userId;
-    private Integer numberOfSeats;
+    private int numberOfSeats;
 
     public ReservationCreationDto() {
     }
@@ -24,11 +24,11 @@ public class ReservationCreationDto {
         this.userId = userId;
     }
 
-    public Integer getNumberOfSeats() {
+    public int getNumberOfSeats() {
         return numberOfSeats;
     }
 
-    public void setNumberOfSeats(Integer numberOfSeats) {
+    public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
 }
