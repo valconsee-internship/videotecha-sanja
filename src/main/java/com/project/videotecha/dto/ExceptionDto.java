@@ -2,15 +2,15 @@ package com.project.videotecha.dto;
 
 import org.springframework.http.HttpStatus;
 
-import java.sql.Timestamp;
+import java.time.Instant;
 
 public class ExceptionDto {
     private String message;
-    private Timestamp timestamp;
+    private Instant timestamp;
     private int httpStatus;
     private HttpStatus httpMessage;
 
-    public ExceptionDto(String message, Timestamp timestamp, int httpStatus, HttpStatus httpMessage) {
+    public ExceptionDto(String message, Instant timestamp, int httpStatus, HttpStatus httpMessage) {
         this.message = message;
         this.timestamp = timestamp;
         this.httpStatus = httpStatus;
@@ -21,7 +21,7 @@ public class ExceptionDto {
         return message;
     }
 
-    public Timestamp getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 

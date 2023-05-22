@@ -1,9 +1,9 @@
 package com.project.videotecha.service.impl;
 
+import com.project.videotecha.exception.EntityNotFoundException;
 import com.project.videotecha.model.Theater;
 import com.project.videotecha.repository.TheaterRepository;
 import com.project.videotecha.service.TheaterService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

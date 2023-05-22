@@ -2,6 +2,7 @@ package com.project.videotecha.service.impl;
 
 import com.project.videotecha.dto.ReservationCreationDto;
 import com.project.videotecha.exception.BusinessRuleException;
+import com.project.videotecha.exception.EntityNotFoundException;
 import com.project.videotecha.exception.NoAvailableSeatsException;
 import com.project.videotecha.mapper.ReservationMapper;
 import com.project.videotecha.model.Projection;
@@ -11,7 +12,6 @@ import com.project.videotecha.repository.ReservationRepository;
 import com.project.videotecha.service.ProjectionService;
 import com.project.videotecha.service.ReservationService;
 import com.project.videotecha.service.UserService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

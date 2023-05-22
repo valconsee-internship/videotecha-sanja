@@ -1,6 +1,7 @@
 package com.project.videotecha.service.impl;
 
 import com.project.videotecha.dto.ProjectionCreationDto;
+import com.project.videotecha.exception.EntityNotFoundException;
 import com.project.videotecha.exception.OverlappingWithExistingProjectionsException;
 import com.project.videotecha.model.Movie;
 import com.project.videotecha.model.Projection;
@@ -9,7 +10,6 @@ import com.project.videotecha.repository.ProjectionRepository;
 import com.project.videotecha.service.MovieService;
 import com.project.videotecha.service.ProjectionService;
 import com.project.videotecha.service.TheaterService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -4,6 +4,7 @@ import com.project.videotecha.dto.ProjectionCreationDto;
 import com.project.videotecha.dto.ProjectionDto;
 import com.project.videotecha.mapper.ProjectionMapper;
 import com.project.videotecha.service.ProjectionService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,7 @@ public class ProjectionController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProjectionDto create(@RequestBody ProjectionCreationDto dto) {
+    public ProjectionDto create(@Valid @RequestBody ProjectionCreationDto dto) {
         return ProjectionMapper.mapProjectionToProjectionDto(projectionService.create(dto));
     }
 

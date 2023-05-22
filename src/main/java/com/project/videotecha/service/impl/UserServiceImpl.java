@@ -1,9 +1,9 @@
 package com.project.videotecha.service.impl;
 
+import com.project.videotecha.exception.EntityNotFoundException;
 import com.project.videotecha.model.User;
 import com.project.videotecha.repository.UserRepository;
 import com.project.videotecha.service.UserService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;

@@ -6,7 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +20,14 @@ public class Movie {
     private Long id;
     @NotBlank(message = "Name is required")
     private String name;
+    @NotBlank(message = "Director is required")
     private String director;
+    @Min(value = 1)
     private int length;
+    @NotBlank(message = "Description is required")
     private String description;
     private boolean deleted = false;
+    @NotEmpty(message = "At least one movie genre is required")
     private List<MovieGenre> movieGenres;
     @OneToMany(mappedBy = "movie")
     private List<Projection> projections = new ArrayList<>();
