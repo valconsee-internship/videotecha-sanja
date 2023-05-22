@@ -8,8 +8,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,12 +24,9 @@ public class Projection {
     @ManyToOne(optional = false)
     @JoinColumn(name = "theater_id", nullable = false)
     private Theater theater;
-    @NotNull(message = "Start time is required")
     private LocalDateTime start;
-    @Min(value = 1)
     private int ticketPrice;
     private boolean deleted = false;
-    @Min(value = 0)
     private int availableSeats;
     @OneToMany(mappedBy = "projection")
     private List<Reservation> reservations = new ArrayList<>();

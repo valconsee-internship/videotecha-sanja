@@ -8,9 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,17 +19,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "First name is required")
     private String firstName;
-    @NotBlank(message = "Last name is required")
     private String lastName;
     @Column(unique = true)
-    @Email
-    @NotNull(message = "Email is required")
     private String email;
-    @NotBlank(message = "Password is required")
     private String password;
-    @NotNull(message = "User type is required")
     private UserType userType;
     @OneToMany(mappedBy = "user")
     private List<Reservation> reservations = new ArrayList<>();
