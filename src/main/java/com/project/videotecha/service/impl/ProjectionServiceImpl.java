@@ -1,6 +1,7 @@
 package com.project.videotecha.service.impl;
 
 import com.project.videotecha.dto.ProjectionCreationDto;
+import com.project.videotecha.exception.OverlappingWithExistingProjectionsException;
 import com.project.videotecha.model.Movie;
 import com.project.videotecha.model.Projection;
 import com.project.videotecha.model.Theater;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static java.lang.String.format;
 
 @Service
 public class ProjectionServiceImpl implements ProjectionService {
@@ -34,7 +37,7 @@ public class ProjectionServiceImpl implements ProjectionService {
         Theater theater = theaterService.getById(dto.getTheaterId());
         Projection projection = new Projection(dto.getStart(), dto.getTicketPrice(), movie, theater);
         if (isOverlappingWithExistingProjections(projection)) {
-            throw new RuntimeException("Projection is overlapping with existing projections");
+            throw new OverlappingWithExistingProjectionsException("Projection is overlapping with existing projections");
         }
         return projectionRepository.save(projection);
     }
@@ -50,7 +53,7 @@ public class ProjectionServiceImpl implements ProjectionService {
     @Override
     public Projection getById(Long id) {
         return projectionRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Not found projection with ID " + id));
+                .orElseThrow(() -> new EntityNotFoundException(format("Not found projection with ID %s", id)));
     }
 
     @Override

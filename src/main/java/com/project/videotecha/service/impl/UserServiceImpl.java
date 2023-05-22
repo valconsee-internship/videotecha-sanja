@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
+import static java.lang.String.format;
+
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -29,6 +31,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getById(Long userId) {
         return userRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException("Not found user with ID " + userId));
+                .orElseThrow(() -> new EntityNotFoundException(format("Not found user with ID %s", userId)));
     }
 }

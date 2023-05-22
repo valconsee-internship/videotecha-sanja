@@ -1,0 +1,33 @@
+package com.project.videotecha.exception;
+
+import com.project.videotecha.dto.ExceptionDto;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.sql.Timestamp;
+import java.time.ZonedDateTime;
+
+@RestControllerAdvice
+public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler(value = {
+            MovieHasFutureProjectionsException.class,
+            OverlappingWithExistingProjectionsException.class,
+            NoAvailableSeatsException.class,})
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public ExceptionDto handleBadRequestException(RuntimeException e) {
+        return new ExceptionDto(e.getMessage(), Timestamp.from(ZonedDateTime.now().toInstant()),
+                HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = EntityNotFoundException.class)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public ExceptionDto handleNotFoundException(EntityNotFoundException e) {
+        return new ExceptionDto(e.getMessage(), Timestamp.from(ZonedDateTime.now().toInstant()),
+                HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND);
+    }
+}

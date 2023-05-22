@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static java.lang.String.format;
+
 @Service
 public class TheaterServiceImpl implements TheaterService {
     private final TheaterRepository theaterRepository;
@@ -26,6 +28,6 @@ public class TheaterServiceImpl implements TheaterService {
     @Transactional(readOnly = true)
     public Theater getById(Long id) {
         return theaterRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Theater with ID " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException(format("Theater with ID %s not found", id)));
     }
 }
