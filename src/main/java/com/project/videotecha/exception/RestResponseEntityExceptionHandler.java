@@ -1,7 +1,6 @@
 package com.project.videotecha.exception;
 
 import com.project.videotecha.dto.ExceptionDto;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -14,10 +13,7 @@ import java.time.ZonedDateTime;
 @RestControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = {
-            MovieHasFutureProjectionsException.class,
-            OverlappingWithExistingProjectionsException.class,
-            NoAvailableSeatsException.class,})
+    @ExceptionHandler(value = ApiBadRequestException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ExceptionDto handleBadRequestException(RuntimeException e) {
         return new ExceptionDto(e.getMessage(), Timestamp.from(ZonedDateTime.now().toInstant()),
