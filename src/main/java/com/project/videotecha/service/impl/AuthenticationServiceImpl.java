@@ -1,7 +1,6 @@
 package com.project.videotecha.service.impl;
 
 import com.project.videotecha.model.User;
-import com.project.videotecha.model.enums.UserType;
 import com.project.videotecha.service.AuthenticationService;
 import com.project.videotecha.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
