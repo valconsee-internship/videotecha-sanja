@@ -1,12 +1,21 @@
 package com.project.videotecha.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+
 import java.util.List;
 
 public class MovieCreationDto {
+    @NotBlank(message = "Name is required")
     private String name;
+    @NotBlank(message = "Director is required")
     private String director;
+    @Min(value = 1)
     private int length;
+    @NotBlank(message = "Description is required")
     private String description;
+    @NotEmpty(message = "At least one movie genre is required")
     private List<String> movieGenres;
 
     public String getName() {

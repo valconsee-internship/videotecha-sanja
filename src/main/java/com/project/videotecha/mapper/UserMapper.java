@@ -5,6 +5,9 @@ import com.project.videotecha.dto.UserDto;
 import com.project.videotecha.model.User;
 import com.project.videotecha.model.enums.UserType;
 
+import java.util.Collection;
+import java.util.List;
+
 public final class UserMapper {
     private UserMapper() { }
 
@@ -25,5 +28,12 @@ public final class UserMapper {
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
         return dto;
+    }
+
+    public static List<UserDto> mapToDtos(Collection<User> users) {
+        return users
+                .stream()
+                .map(UserMapper::mapUserToUserDto)
+                .toList();
     }
 }

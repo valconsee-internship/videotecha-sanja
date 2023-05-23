@@ -1,13 +1,15 @@
 package com.project.videotecha.service.impl;
 
+import com.project.videotecha.exception.EntityNotFoundException;
 import com.project.videotecha.model.Theater;
 import com.project.videotecha.repository.TheaterRepository;
 import com.project.videotecha.service.TheaterService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static java.lang.String.format;
 
 @Service
 public class TheaterServiceImpl implements TheaterService {
@@ -26,6 +28,6 @@ public class TheaterServiceImpl implements TheaterService {
     @Transactional(readOnly = true)
     public Theater getById(Long id) {
         return theaterRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Theater with ID " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException(format("Theater with ID %s not found", id)));
     }
 }

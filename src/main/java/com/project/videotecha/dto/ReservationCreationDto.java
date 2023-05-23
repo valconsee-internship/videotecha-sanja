@@ -1,8 +1,14 @@
 package com.project.videotecha.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
 public class ReservationCreationDto {
+    @NotNull(message = "Projection is required")
     private Long projectionId;
+    @NotNull(message = "User is required")
     private Long userId;
+    @Min(value = 1)
     private int numberOfSeats;
 
     public ReservationCreationDto() {

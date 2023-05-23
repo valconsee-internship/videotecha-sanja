@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
 
-
     public AuthenticationServiceImpl(UserService userService) {
         this.userService = userService;
     }

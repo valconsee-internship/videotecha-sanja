@@ -4,6 +4,7 @@ import com.project.videotecha.dto.MovieCreationDto;
 import com.project.videotecha.dto.MovieDto;
 import com.project.videotecha.mapper.MovieMapper;
 import com.project.videotecha.service.MovieService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,12 +29,12 @@ public class MovieController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MovieDto create(@RequestBody MovieCreationDto movieCreationDto) {
+    public MovieDto create(@Valid @RequestBody MovieCreationDto movieCreationDto) {
         return MovieMapper.mapToDto(movieService.create(MovieMapper.mapMovieCreationDtoToMovie(movieCreationDto)));
     }
 
     @PutMapping
-    public MovieDto update(@RequestBody MovieDto movieDto) {
+    public MovieDto update(@Valid @RequestBody MovieDto movieDto) {
         return MovieMapper.mapToDto(movieService.update(MovieMapper.mapMovieDtoToMovie(movieDto)));
     }
 
