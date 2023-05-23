@@ -1,7 +1,9 @@
 package com.project.videotecha.model;
 
+import com.project.videotecha.converter.PasswordConverter;
 import com.project.videotecha.model.enums.UserType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,7 @@ public class User {
     private String lastName;
     @Column(unique = true)
     private String email;
+    @Convert(converter = PasswordConverter.class)
     private String password;
     private UserType userType;
     @OneToMany(mappedBy = "user")
