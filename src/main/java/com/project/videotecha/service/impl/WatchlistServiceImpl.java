@@ -1,14 +1,17 @@
 package com.project.videotecha.service.impl;
 
 import com.project.videotecha.dto.AddToWatchlistDTO;
+import com.project.videotecha.exception.BusinessRuleException;
 import com.project.videotecha.model.Movie;
 import com.project.videotecha.model.User;
-import com.project.videotecha.model.UserWatchlist;
+import com.project.videotecha.model.UserWatchlistItem;
 import com.project.videotecha.repository.WatchlistRepository;
 import com.project.videotecha.service.MovieService;
 import com.project.videotecha.service.UserService;
 import com.project.videotecha.service.WatchlistService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class WatchlistServiceImpl implements WatchlistService {
@@ -28,10 +31,22 @@ public class WatchlistServiceImpl implements WatchlistService {
     }
 
     @Override
-    public UserWatchlist addToWatchlist(AddToWatchlistDTO addToWatchlistDTO) {
+    public UserWatchlistItem addToWatchlist(AddToWatchlistDTO addToWatchlistDTO) {
         User user = userService.getById(addToWatchlistDTO.getUserId());
         Movie movie = movieService.getById(addToWatchlistDTO.getMovieId());
-        UserWatchlist userWatchlist = new UserWatchlist(user, movie);
-        return watchlistRepository.save(userWatchlist);
+        List<Movie> userWatchlist = getUsersWatchlist(user.getId());
+        if (userWatchlist.contains(movie)) {
+            throw new BusinessRuleException("Already in watchlist!");
+        }
+        UserWatchlistItem userWatchlistItem = new UserWatchlistItem(user, movie);
+        return watchlistRepository.save(userWatchlistItem);
+    }
+
+    @Override
+    public List<Movie> getUsersWatchlist(Long id) {
+        return watchlistRepository.findAllByUserId(id)
+                .stream()
+                .map(UserWatchlistItem::getMovie)
+                .toList();
     }
 }

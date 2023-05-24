@@ -1,10 +1,15 @@
 package com.project.videotecha.service;
 
 import com.project.videotecha.dto.AddToWatchlistDTO;
-import com.project.videotecha.model.UserWatchlist;
+import com.project.videotecha.model.Movie;
+import com.project.videotecha.model.UserWatchlistItem;
+
+import java.util.List;
 
 public interface WatchlistService {
 
-    UserWatchlist addToWatchlist(AddToWatchlistDTO addToWatchlistDTO);
+    UserWatchlistItem addToWatchlist(AddToWatchlistDTO addToWatchlistDTO);
+
+    List<Movie> getUsersWatchlist(Long id);
 
 }

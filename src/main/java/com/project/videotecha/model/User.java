@@ -31,6 +31,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Reservation> reservations = new ArrayList<>();
 
+    @OneToMany(mappedBy = "")
+    private List<UserWatchlistItem> watchlists = new ArrayList<>();
+
     public User() {
     }
 

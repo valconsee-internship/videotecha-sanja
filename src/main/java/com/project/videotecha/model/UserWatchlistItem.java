@@ -4,24 +4,27 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 
 @Entity
-public class UserWatchlist {
+public class UserWatchlistItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     private User user;
 
-    @OneToOne
+    @ManyToOne
     private Movie movie;
 
-    public UserWatchlist(User user, Movie movie) {
+    public UserWatchlistItem(User user, Movie movie) {
         this.user = user;
         this.movie = movie;
+    }
+
+    public UserWatchlistItem() {
     }
 
     public User getUser() {

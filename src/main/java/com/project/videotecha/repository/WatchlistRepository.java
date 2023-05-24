@@ -1,7 +1,12 @@
 package com.project.videotecha.repository;
 
-import com.project.videotecha.model.UserWatchlist;
+import com.project.videotecha.model.UserWatchlistItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface WatchlistRepository extends JpaRepository<UserWatchlist, Long> {
+import java.util.List;
+
+public interface WatchlistRepository extends JpaRepository<UserWatchlistItem, Long> {
+
+    List<UserWatchlistItem> findAllByUserId(Long id);
+
 }
