@@ -7,7 +7,7 @@ import java.util.Collection;
 public interface UserService {
     Collection<User> getAll();
 
-    User registerUser(User newUser);
+    User saveUser(User newUser);
 
     User getById(Long userId);
 }

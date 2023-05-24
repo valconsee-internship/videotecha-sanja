@@ -2,12 +2,17 @@ package com.project.videotecha.model;
 
 import com.project.videotecha.converter.PasswordConverter;
 import com.project.videotecha.model.enums.UserType;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -31,8 +36,17 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Reservation> reservations = new ArrayList<>();
 
-    @OneToMany(mappedBy = "")
-    private List<UserWatchlistItem> watchLists = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_watchlist",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "movie_id", referencedColumnName = "id"
+            )
+    )
+    private List<Movie> watchlist = new ArrayList<>();
 
     public User() {
     }
@@ -126,4 +140,13 @@ public class User {
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
+
+    public List<Movie> getWatchLists() {
+        return watchlist;
+    }
+
+    public void setWatchLists(List<Movie> watchlist) {
+        this.watchlist = watchlist;
+    }
+
 }

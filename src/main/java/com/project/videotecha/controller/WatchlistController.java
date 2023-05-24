@@ -3,7 +3,6 @@ package com.project.videotecha.controller;
 import com.project.videotecha.dto.AddToWatchlistDTO;
 import com.project.videotecha.dto.MovieDto;
 import com.project.videotecha.mapper.MovieMapper;
-import com.project.videotecha.model.UserWatchlistItem;
 import com.project.videotecha.service.WatchlistService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +22,7 @@ public class WatchlistController {
 
     @PostMapping
     public MovieDto addToWatchlist(@RequestBody @Valid AddToWatchlistDTO addToWatchlistDTO) {
-        UserWatchlistItem watchlist = watchlistService.addToWatchlist(addToWatchlistDTO);
-        return MovieMapper.mapToDto(watchlist.getMovie());
+        return MovieMapper.mapToDto(watchlistService.addToWatchlist(addToWatchlistDTO));
     }
 
 }
