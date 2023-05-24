@@ -1,6 +1,7 @@
 package com.project.videotecha.controller;
 
 import com.project.videotecha.dto.LoginDto;
+import com.project.videotecha.controller.api.AuthenticationControllerApi;
 import com.project.videotecha.dto.RegistrationDataDto;
 import com.project.videotecha.dto.UserDto;
 import com.project.videotecha.mapper.UserMapper;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("auth")
-public class AuthenticationController {
+public class AuthenticationController implements AuthenticationControllerApi {
     private final AuthenticationService authenticationService;
 
     public AuthenticationController(AuthenticationService authenticationService) {

@@ -1,5 +1,6 @@
 package com.project.videotecha.controller;
 
+import com.project.videotecha.controller.api.ProjectionControllerApi;
 import com.project.videotecha.dto.ProjectionCreationDto;
 import com.project.videotecha.dto.ProjectionDto;
 import com.project.videotecha.mapper.ProjectionMapper;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("projections")
-public class ProjectionController {
+public class ProjectionController implements ProjectionControllerApi {
     private final ProjectionService projectionService;
 
     public ProjectionController(ProjectionService projectionService) {

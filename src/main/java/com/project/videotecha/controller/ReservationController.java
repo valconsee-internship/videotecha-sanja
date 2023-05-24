@@ -1,9 +1,11 @@
 package com.project.videotecha.controller;
 
+import com.project.videotecha.controller.api.ReservationControllerApi;
 import com.project.videotecha.dto.ReservationCreationDto;
 import com.project.videotecha.dto.ReservationDto;
 import com.project.videotecha.mapper.ReservationMapper;
 import com.project.videotecha.service.ReservationService;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("reservations")
-public class ReservationController {
+public class ReservationController implements ReservationControllerApi {
     private final ReservationService reservationService;
 
     public ReservationController(ReservationService reservationService) {
