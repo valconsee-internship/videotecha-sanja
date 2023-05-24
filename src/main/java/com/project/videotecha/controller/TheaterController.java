@@ -1,5 +1,6 @@
 package com.project.videotecha.controller;
 
+import com.project.videotecha.controller.api.TheaterControllerApi;
 import com.project.videotecha.dto.TheaterDto;
 import com.project.videotecha.mapper.TheaterMapper;
 import com.project.videotecha.service.TheaterService;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("theaters")
-public class TheaterController {
+public class TheaterController implements TheaterControllerApi {
     private final TheaterService theaterService;
 
     public TheaterController(TheaterService theaterService) {

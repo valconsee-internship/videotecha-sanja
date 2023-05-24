@@ -29,3 +29,6 @@ spring:
         smtp:
           auth: true
           starttls.enable: true
+springdoc:
+  api-docs:
+    path: /videotecha-openapi
