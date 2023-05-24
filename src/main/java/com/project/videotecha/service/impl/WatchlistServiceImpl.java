@@ -16,13 +16,11 @@ import java.util.List;
 @Service
 public class WatchlistServiceImpl implements WatchlistService {
 
-
     private final WatchlistRepository watchlistRepository;
 
     private final UserService userService;
 
     private final MovieService movieService;
-
 
     public WatchlistServiceImpl(WatchlistRepository watchlistRepository, UserService userService, MovieService movieService) {
         this.watchlistRepository = watchlistRepository;
@@ -49,4 +47,5 @@ public class WatchlistServiceImpl implements WatchlistService {
                 .map(UserWatchlistItem::getMovie)
                 .toList();
     }
+
 }

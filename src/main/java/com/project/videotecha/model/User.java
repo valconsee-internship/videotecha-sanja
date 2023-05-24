@@ -32,7 +32,7 @@ public class User {
     private List<Reservation> reservations = new ArrayList<>();
 
     @OneToMany(mappedBy = "")
-    private List<UserWatchlistItem> watchlists = new ArrayList<>();
+    private List<UserWatchlistItem> watchLists = new ArrayList<>();
 
     public User() {
     }
