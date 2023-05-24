@@ -17,9 +17,9 @@ public interface AuthenticationControllerApi {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "User created.",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))}),
-            @ApiResponse(responseCode = "400", description = "Business rule exception.",
+            @ApiResponse(responseCode = "400", description = "User registration failure.",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDto.class))})
     })
-    public UserDto registerUser(@Valid @RequestBody RegistrationDataDto registrationData);
+    UserDto registerUser(@Valid @RequestBody RegistrationDataDto registrationData);
 
 }

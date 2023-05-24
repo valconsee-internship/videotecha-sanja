@@ -24,10 +24,11 @@ public interface ReservationControllerApi {
     @Operation(summary = "Update reservation.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Reservation updated."),
-            @ApiResponse(responseCode = "400", description = "Business rule exception.",
+            @ApiResponse(responseCode = "400", description = "Update reservation failure.",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDto.class))}),
             @ApiResponse(responseCode = "404", description = "Reservation with this id not found.",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDto.class))})
     })
     void cancel(@Parameter(description = "Id of reservation for updating") Long id);
+
 }

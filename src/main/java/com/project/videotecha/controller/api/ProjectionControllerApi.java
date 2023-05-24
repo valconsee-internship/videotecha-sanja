@@ -24,8 +24,6 @@ public interface ProjectionControllerApi {
     @Operation(summary = "Delete projection.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Projection deleted."),
-            @ApiResponse(responseCode = "400", description = "Business rule exception.",
-                    content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDto.class))}),
             @ApiResponse(responseCode = "404", description = "Projection with this id not found.",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDto.class))})
     })
@@ -45,6 +43,6 @@ public interface ProjectionControllerApi {
             @ApiResponse(responseCode = "200", description = "Requested projections found.",
                     content = { @Content(mediaType = "application/json") })
     })
-    public List<ProjectionDto> getProjectionsWithAvailableSeats();
+    List<ProjectionDto> getProjectionsWithAvailableSeats();
 
 }

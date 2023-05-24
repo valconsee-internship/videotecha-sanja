@@ -25,7 +25,7 @@ public interface MovieControllerApi {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Movie updated.",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = MovieDto.class))}),
-            @ApiResponse(responseCode = "400", description = "Business rule exception.",
+            @ApiResponse(responseCode = "400", description = "Movie update failure.",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDto.class))}),
             @ApiResponse(responseCode = "404", description = "Movie with this id not found.",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDto.class))})
@@ -35,8 +35,6 @@ public interface MovieControllerApi {
     @Operation(summary = "Delete movie.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Movie deleted."),
-            @ApiResponse(responseCode = "400", description = "Business rule exception.",
-                    content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDto.class))}),
             @ApiResponse(responseCode = "404", description = "Movie with this id not found.",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDto.class))})
     })
