@@ -31,4 +31,11 @@ public class RestResponseEntityExceptionHandler {
                 .forEach(e -> b.append(e.getDefaultMessage()).append(";"));
         return new ExceptionDto(b.toString(), Instant.now(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(value = EmailNotSentException.class)
+    public ExceptionDto handleEmailNotSentException(EmailNotSentException e) {
+        // TODO: Log stacktrace
+        return new ExceptionDto(e.getMessage(), Instant.now(), HttpStatus.UNPROCESSABLE_ENTITY.value(), HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
 }
