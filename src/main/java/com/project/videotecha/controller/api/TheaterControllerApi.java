@@ -1,7 +1,6 @@
 package com.project.videotecha.controller.api;
 
 import com.project.videotecha.dto.ExceptionDto;
-import com.project.videotecha.dto.MovieDto;
 import com.project.videotecha.dto.TheaterDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

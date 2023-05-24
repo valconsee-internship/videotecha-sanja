@@ -1,10 +1,8 @@
 package com.project.videotecha.controller.api;
 
 import com.project.videotecha.dto.ExceptionDto;
-import com.project.videotecha.dto.MovieDto;
 import com.project.videotecha.dto.ProjectionCreationDto;
 import com.project.videotecha.dto.ProjectionDto;
-import com.project.videotecha.dto.ReservationDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
