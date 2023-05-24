@@ -1,5 +1,6 @@
 package com.project.videotecha.controller;
 
+import com.project.videotecha.controller.api.UserControllerApi;
 import com.project.videotecha.dto.UserDto;
 import com.project.videotecha.mapper.UserMapper;
 import com.project.videotecha.service.UserService;
@@ -11,7 +12,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("users")
-public class UserController {
+public class UserController implements UserControllerApi {
     private final UserService userService;
 
     public UserController(UserService userService) {

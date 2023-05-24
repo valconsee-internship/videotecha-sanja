@@ -19,4 +19,6 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: yes
-
+springdoc:
+  api-docs:
+    path: /videotecha-openapi

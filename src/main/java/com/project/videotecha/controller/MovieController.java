@@ -1,5 +1,6 @@
 package com.project.videotecha.controller;
 
+import com.project.videotecha.controller.api.MovieControllerApi;
 import com.project.videotecha.dto.MovieCreationDto;
 import com.project.videotecha.dto.MovieDto;
 import com.project.videotecha.mapper.MovieMapper;
@@ -20,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("movies")
-public class MovieController {
+public class MovieController implements MovieControllerApi {
     private final MovieService movieService;
 
     public MovieController(MovieService movieService) {
