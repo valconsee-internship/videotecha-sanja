@@ -32,7 +32,7 @@ public class ReservationController implements ReservationControllerApi {
     }
 
     @PutMapping("/{id}/cancel")
-    public void cancel(@Parameter(description = "Id of reservation for updating") @PathVariable Long id) {
+    public void cancel(@PathVariable Long id) {
         reservationService.cancel(id);
     }
 }

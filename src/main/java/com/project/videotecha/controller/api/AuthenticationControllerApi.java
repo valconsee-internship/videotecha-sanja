@@ -20,6 +20,6 @@ public interface AuthenticationControllerApi {
             @ApiResponse(responseCode = "400", description = "User registration failure.",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDto.class))})
     })
-    UserDto registerUser(@Valid @RequestBody RegistrationDataDto registrationData);
+    UserDto registerUser(RegistrationDataDto registrationData);
 
 }

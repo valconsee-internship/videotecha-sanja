@@ -19,7 +19,7 @@ public interface ReservationControllerApi {
             @ApiResponse(responseCode = "201", description = "Reservation created.",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ReservationDto.class))})
     })
-    ReservationDto create(@Valid @RequestBody ReservationCreationDto dto);
+    ReservationDto create(ReservationCreationDto dto);
 
     @Operation(summary = "Update reservation.")
     @ApiResponses(value = {
