@@ -34,12 +34,15 @@ public class ProjectionServiceImpl implements ProjectionService {
 
     public static final String DATE_FORMAT = "HH:mm:ss yyyy-MM-dd";
 
+    private DateTimeFormatter formatter;
+
     public ProjectionServiceImpl(ProjectionRepository projectionRepository, MovieService movieService,
                                  TheaterService theaterService, EmailService emailService) {
         this.projectionRepository = projectionRepository;
         this.movieService = movieService;
         this.theaterService = theaterService;
         this.emailService = emailService;
+        this.formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
     }
 
     @Override
@@ -102,7 +105,7 @@ public class ProjectionServiceImpl implements ProjectionService {
                 usersAlreadyReceivedEmail.add(r.getUser());
             } catch (MessagingException e) {
                 // TODO: Log the exception when logging gets implemented
-                throw new EmailNotSentException("Email of user: " + r.getUser().getEmail() + "could not be sent");
+                throw new EmailNotSentException("Email of user: " + emailRecipient.getEmail() + "could not be sent", e);
             }
         }
     }
@@ -110,7 +113,6 @@ public class ProjectionServiceImpl implements ProjectionService {
     private EmailDetailDto gatherEmailDetail(Projection projection, User recipient) {
         String movieName = projection.getMovie().getName();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         String movieStart = projection.getStart().format(formatter);
 
         return new EmailDetailDto(movieName, movieStart, recipient.getEmail());
