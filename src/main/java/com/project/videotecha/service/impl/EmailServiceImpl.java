@@ -23,8 +23,8 @@ public class EmailServiceImpl implements EmailService {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         helper.setTo(detail.getUserEmail());
-        helper.setText("Your reservation for the projection of Movie: " + "{" + detail.getMovieName() + "}" + " starting at " +
-                detail.getMovieStartTime() + " has been cancelled because the projection is cancelled");
+        helper.setText(String.format("Your reservation for the projection of Movie: %s starting at %s has been cancelled because the projection is cancelled",
+                detail.getMovieName(), detail.getMovieStartTime()));
 
         javaMailSender.send(message);
     }

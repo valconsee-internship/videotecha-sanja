@@ -25,4 +25,5 @@ public class EmailDetailDto {
     public String getUserEmail() {
         return userEmail;
     }
+
 }
