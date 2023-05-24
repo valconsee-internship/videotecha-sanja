@@ -6,6 +6,7 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import com.project.videotecha.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -36,14 +37,20 @@ import java.util.List;
 public class SecurityConfiguration {
 
     private final RsaKeyProperties jwtConfigProperties;
+    private final UserService userService;
 
-    public SecurityConfiguration(RsaKeyProperties jwtConfigProperties) {
+    public SecurityConfiguration(RsaKeyProperties jwtConfigProperties, UserService userService) {
         this.jwtConfigProperties = jwtConfigProperties;
+        this.userService = userService;
     }
 
     @Bean
-    public InMemoryUserDetailsManager users() {
-        return new InMemoryUserDetailsManager(User.withUsername("sanja").password("sanja").authorities("REGISTERED").build());
+    public InMemoryUserDetailsManager user() {
+        com.project.videotecha.model.User user = userService.getById(1L);
+        return new InMemoryUserDetailsManager(User
+                .withUsername(user.getEmail())
+                .password(user.getPassword())
+                .authorities(user.getUserType().name()).build());
     }
 
     @Bean
@@ -53,9 +60,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/auth/*").permitAll().anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-                .exceptionHandling(
-                        ex -> ex.authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
-                                .accessDeniedHandler(new BearerTokenAccessDeniedHandler()))
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
+                        .accessDeniedHandler(new BearerTokenAccessDeniedHandler()))
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
