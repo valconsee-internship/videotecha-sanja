@@ -35,3 +35,5 @@ spring:
 springdoc:
   api-docs:
     path: /videotecha-openapi
+omdbAPI:
+  url: https://www.omdbapi.com/?type=movie&apikey=d8279094&s=
