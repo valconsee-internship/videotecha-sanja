@@ -1,6 +1,6 @@
 package com.project.videotecha.service.impl;
 
-import com.project.videotecha.dto.AddToWatchlistDTO;
+import com.project.videotecha.dto.WatchlistDTO;
 import com.project.videotecha.exception.BusinessRuleException;
 import com.project.videotecha.model.Movie;
 import com.project.videotecha.model.User;
@@ -25,9 +25,9 @@ public class WatchlistServiceImpl implements WatchlistService {
     }
 
     @Override
-    public Movie addToWatchlist(AddToWatchlistDTO addToWatchlistDTO) {
-        User user = userService.getById(addToWatchlistDTO.getUserId());
-        Movie movie = movieService.getById(addToWatchlistDTO.getMovieId());
+    public Movie addToWatchlist(WatchlistDTO watchlistDTO) {
+        User user = userService.getById(watchlistDTO.getUserId());
+        Movie movie = movieService.getById(watchlistDTO.getMovieId());
         List<Movie> userWatchlist = getUsersWatchlist(user.getId());
         if (userWatchlist.contains(movie)) {
             throw new BusinessRuleException("Already in watchlist!");
@@ -41,6 +41,18 @@ public class WatchlistServiceImpl implements WatchlistService {
     public List<Movie> getUsersWatchlist(Long id) {
         User user = userService.getById(id);
         return user.getWatchLists();
+    }
+
+    @Override
+    public void deleteFromWatchlist(WatchlistDTO watchlistDTO) {
+        User user = userService.getById(watchlistDTO.getUserId());
+        Movie movie = movieService.getById(watchlistDTO.getMovieId());
+        List<Movie> userWatchlist = getUsersWatchlist(user.getId());
+        if (!userWatchlist.contains(movie)) {
+            throw new BusinessRuleException(String.format("Movie with id %d is not in the watchlist", movie.getId()));
+        }
+        userWatchlist.remove(movie);
+        userService.saveUser(user);
     }
 
 }
