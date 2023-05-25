@@ -15,7 +15,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public User registerUser(User newUser) {
-        return userService.registerUser(newUser);
+        return userService.saveUser(newUser);
     }
 
 }
