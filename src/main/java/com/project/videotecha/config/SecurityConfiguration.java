@@ -50,7 +50,8 @@ public class SecurityConfiguration {
         return new InMemoryUserDetailsManager(User
                 .withUsername(user.getEmail())
                 .password(user.getPassword())
-                .authorities(user.getUserType().name()).build());
+                .authorities(user.getRole().getAuthority())
+                .build());
     }
 
     @Bean

@@ -21,7 +21,7 @@ public class TokenServiceImpl implements TokenService {
 
     public String generateToken(User user) {
         Instant now = Instant.now();
-        String role = user.getUserType().name();
+        String role = user.getRole().getAuthority();
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("videotecha")
                 .issuedAt(now)

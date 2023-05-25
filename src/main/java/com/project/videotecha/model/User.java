@@ -1,23 +1,27 @@
 package com.project.videotecha.model;
 
 import com.project.videotecha.converter.PasswordConverter;
-import com.project.videotecha.model.enums.UserType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "\"user\"")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,20 +31,21 @@ public class User {
     private String email;
     @Convert(converter = PasswordConverter.class)
     private String password;
-    private UserType userType;
+    @ManyToOne
+    private Role role;
     @OneToMany(mappedBy = "user")
     private List<Reservation> reservations = new ArrayList<>();
 
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String email, String password, UserType userType) {
+    public User(Long id, String firstName, String lastName, String email, String password, Role role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.userType = userType;
+        this.role = role;
     }
 
     public Long getId() {
@@ -75,20 +80,50 @@ public class User {
         this.email = email;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.getAuthority()));
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public UserType getUserType() {
-        return userType;
+    public Role getRole() {
+        return role;
     }
 
-    public void setUserType(UserType userType) {
-        this.userType = userType;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
@@ -99,7 +134,7 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", userType=" + userType +
+                ", userType=" + role +
                 '}';
     }
 
@@ -108,12 +143,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return getId().equals(user.getId()) && Objects.equals(getFirstName(), user.getFirstName()) && Objects.equals(getLastName(), user.getLastName()) && getEmail().equals(user.getEmail()) && Objects.equals(getPassword(), user.getPassword()) && getUserType() == user.getUserType();
+        return getId().equals(user.getId()) && Objects.equals(getFirstName(), user.getFirstName()) && Objects.equals(getLastName(), user.getLastName()) && getEmail().equals(user.getEmail()) && Objects.equals(getPassword(), user.getPassword()) && getRole() == user.getRole();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getEmail(), getPassword(), getUserType());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getEmail(), getPassword(), getRole());
     }
 
     public List<Reservation> getReservations() {

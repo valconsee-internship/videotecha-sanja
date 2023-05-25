@@ -5,6 +5,7 @@ import com.project.videotecha.controller.api.AuthenticationControllerApi;
 import com.project.videotecha.dto.RegistrationDataDto;
 import com.project.videotecha.dto.UserDto;
 import com.project.videotecha.mapper.UserMapper;
+import com.project.videotecha.model.User;
 import com.project.videotecha.service.AuthenticationService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -26,8 +27,7 @@ public class AuthenticationController implements AuthenticationControllerApi {
     @PostMapping("registration")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto registerUser(@Valid @RequestBody RegistrationDataDto registrationData) {
-        return UserMapper.mapUserToUserDto(authenticationService.registerUser(UserMapper
-                .mapRegistrationDataDtoToUser(registrationData)));
+        return UserMapper.mapUserToUserDto(authenticationService.registerUser(registrationData));
     }
 
     @PostMapping("login")

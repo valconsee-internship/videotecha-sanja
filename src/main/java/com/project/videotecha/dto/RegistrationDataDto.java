@@ -14,8 +14,8 @@ public class RegistrationDataDto {
     private String email;
     @NotBlank(message = "Password is required")
     private String password;
-    @NotBlank(message = "User type is required")
-    private String userTypeName;
+    @NotNull(message = "User role is required")
+    private Long roleId;
 
     public RegistrationDataDto() {
     }
@@ -52,11 +52,11 @@ public class RegistrationDataDto {
         this.password = password;
     }
 
-    public String getUserTypeName() {
-        return userTypeName;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setUserTypeName(String userTypeName) {
-        this.userTypeName = userTypeName;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 }
