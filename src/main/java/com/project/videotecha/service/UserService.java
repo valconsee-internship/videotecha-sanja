@@ -10,4 +10,6 @@ public interface UserService {
     User saveUser(User newUser);
 
     User getById(Long userId);
+
+    User getByEmail(String email);
 }
