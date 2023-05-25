@@ -9,8 +9,8 @@ create table role (
 alter table "user" add role_id bigint;
 alter table "user" add constraint fk_role_id foreign key (role_id) references role (id);
 
-insert into role(name) values('ADMIN');
-insert into role(name) values('REGISTERED');
+insert into role(name) values('ROLE_ADMIN');
+insert into role(name) values('ROLE_REGISTERED');
 
 update "user" set role_id = 1 where id = 1;
 update "user" set role_id = 2 where id = 2;
