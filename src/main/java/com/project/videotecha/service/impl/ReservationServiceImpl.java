@@ -12,6 +12,8 @@ import com.project.videotecha.repository.ReservationRepository;
 import com.project.videotecha.service.ProjectionService;
 import com.project.videotecha.service.ReservationService;
 import com.project.videotecha.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +23,7 @@ import static java.lang.String.format;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
+    private static final Logger logger = LoggerFactory.getLogger(ReservationServiceImpl.class);
     private static final int MAX_NUMBER_OF_SEATS_PER_RESERVATION = 5;
     private static final int CANCELLING_RESERVATION_LIMIT_IN_HOURS = 2;
     private final ReservationRepository reservationRepository;
@@ -53,6 +56,7 @@ public class ReservationServiceImpl implements ReservationService {
         User user = userService.getById(dto.getUserId());
         Reservation reservation = ReservationMapper.mapToReservation(user, projection, dto.getNumberOfSeats());
         reservation.getProjection().setAvailableSeats(reservation.getProjection().getAvailableSeats() - dto.getNumberOfSeats());
+        logger.info("Creating reservation for user (Id = {}), on projection (Id = {}).",dto.getUserId(),dto.getProjectionId());
         return reservationRepository.save(reservation);
     }
 
@@ -68,6 +72,7 @@ public class ReservationServiceImpl implements ReservationService {
         r.setCanceled(true);
         int availableSeatsAfterCanceling = r.getProjection().getAvailableSeats() + r.getNumberOfSeats();
         r.getProjection().setAvailableSeats(availableSeatsAfterCanceling);
+        logger.info("Canceling reservation(Id={}) for user (Id={}) on projection(Id={}).",r.getId(),r.getUser().getId(),r.getProjection().getId());
         reservationRepository.save(r);
     }
 
