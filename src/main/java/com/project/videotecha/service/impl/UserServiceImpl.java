@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User registerUser(User newUser) {
-        logger.info("Registering user {} {}.",newUser.getFirstName(),newUser.getLastName());
+    public User saveUser(User newUser) {
+        logger.info("Saving user {} {}.",newUser.getFirstName(),newUser.getLastName());
         return userRepository.save(newUser);
     }
 

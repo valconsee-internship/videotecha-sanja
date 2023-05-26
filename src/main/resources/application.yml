@@ -19,3 +19,16 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: no
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: stefanpraksa7@gmail.com
+    password: fmlegaqzkawuhnsx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls.enable: true
+springdoc:
+  api-docs:
+    path: /videotecha-openapi
