@@ -1,5 +1,6 @@
 package com.project.videotecha.service.impl;
 
+import com.project.videotecha.dto.UpdateMovieDto;
 import com.project.videotecha.exception.EntityNotFoundException;
 import com.project.videotecha.exception.MovieHasFutureProjectionsException;
 import com.project.videotecha.model.Movie;
@@ -72,4 +73,13 @@ public class MovieServiceImpl implements MovieService {
         return movieRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new EntityNotFoundException(format("Not found movie with ID %s", id)));
     }
+
+
+    @Override
+    public Movie updateMovieImdbId(UpdateMovieDto updateMovieDto) {
+        Movie movie = getById(updateMovieDto.getMovieId());
+        movie.setImdbId(updateMovieDto.getImdbId());
+        return movieRepository.save(movie);
+    }
+
 }

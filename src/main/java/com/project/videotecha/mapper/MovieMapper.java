@@ -19,7 +19,7 @@ public final class MovieMapper {
             movieGenres.add(MovieGenre.valueOf(movieGenreName));
         }
         return new Movie(null, movieCreationDto.getName(), movieCreationDto.getDirector(), movieCreationDto.getLength(),
-                movieCreationDto.getDescription(), movieGenres);
+                movieCreationDto.getDescription(), movieGenres, null);
     }
 
     public static MovieDto mapToDto(Movie movie) {
@@ -47,7 +47,7 @@ public final class MovieMapper {
             movieGenres.add(MovieGenre.valueOf(movieGenreName));
         }
         return new Movie(movieDto.getId(), movieDto.getName(), movieDto.getDirector(), movieDto.getLength(),
-                movieDto.getDescription(), movieGenres);
+                movieDto.getDescription(), movieGenres, null);
     }
 
     public static List<MovieDto> mapToMovieDtos(List<Movie> movies) {

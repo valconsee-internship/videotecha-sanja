@@ -24,10 +24,12 @@ public class Movie {
     @OneToMany(mappedBy = "movie")
     private List<Projection> projections = new ArrayList<>();
 
+    private String imdbId;
+
     public Movie() {
     }
 
-    public Movie(Long id, String name, String director, int length, String description, List<MovieGenre> movieGenres) {
+    public Movie(Long id, String name, String director, int length, String description, List<MovieGenre> movieGenres, String imdbId) {
         this.id = id;
         this.name = name;
         this.director = director;
@@ -35,6 +37,7 @@ public class Movie {
         this.description = description;
         this.movieGenres = movieGenres;
         this.projections = new ArrayList<>();
+        this.imdbId = imdbId;
     }
 
     public Long getId() {
@@ -100,4 +103,13 @@ public class Movie {
     public void setProjections(List<Projection> projections) {
         this.projections = projections;
     }
+
+    public String getImdbId() {
+        return imdbId;
+    }
+
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
+    }
+
 }
