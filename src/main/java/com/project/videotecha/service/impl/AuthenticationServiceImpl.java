@@ -32,14 +32,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         this.roleRepository = roleRepository;
     }
 
-    @Override
+
     public User registerUser(RegistrationDataDto registrationData) {
         Role role = roleRepository.findById(registrationData.getRoleId())
                 .orElseThrow(() -> new EntityNotFoundException(format("Not found role with ID %s", registrationData.getRoleId())));
 
         User newUser = UserMapper.mapRegistrationDataDtoToUser(registrationData, role);
 
-        return userService.registerUser(newUser);
+        return userService.saveUser(newUser);
     }
 
     @Override
