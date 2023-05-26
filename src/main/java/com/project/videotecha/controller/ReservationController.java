@@ -5,7 +5,6 @@ import com.project.videotecha.dto.ReservationCreationDto;
 import com.project.videotecha.dto.ReservationDto;
 import com.project.videotecha.mapper.ReservationMapper;
 import com.project.videotecha.service.ReservationService;
-import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;

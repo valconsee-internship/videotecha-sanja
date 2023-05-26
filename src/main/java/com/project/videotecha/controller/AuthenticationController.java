@@ -1,11 +1,10 @@
 package com.project.videotecha.controller;
 
-import com.project.videotecha.dto.LoginDto;
 import com.project.videotecha.controller.api.AuthenticationControllerApi;
+import com.project.videotecha.dto.LoginDto;
 import com.project.videotecha.dto.RegistrationDataDto;
 import com.project.videotecha.dto.UserDto;
 import com.project.videotecha.mapper.UserMapper;
-import com.project.videotecha.model.User;
 import com.project.videotecha.service.AuthenticationService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
