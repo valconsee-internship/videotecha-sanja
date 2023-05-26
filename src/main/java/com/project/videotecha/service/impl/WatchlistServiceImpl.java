@@ -2,17 +2,21 @@ package com.project.videotecha.service.impl;
 
 import com.project.videotecha.dto.WatchlistDTO;
 import com.project.videotecha.exception.BusinessRuleException;
+import com.project.videotecha.exception.EntityNotFoundException;
 import com.project.videotecha.model.Movie;
 import com.project.videotecha.model.User;
 import com.project.videotecha.service.MovieService;
 import com.project.videotecha.service.UserService;
 import com.project.videotecha.service.WatchlistService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class WatchlistServiceImpl implements WatchlistService {
+    private static final Logger logger = LoggerFactory.getLogger(WatchlistServiceImpl.class);
 
     private final UserService userService;
 
@@ -40,6 +44,7 @@ public class WatchlistServiceImpl implements WatchlistService {
     @Override
     public List<Movie> getUsersWatchlist(Long id) {
         User user = userService.getById(id);
+        logger.info("Fetching watchlist for user {} {} (Id={}).",user.getFirstName(),user.getLastName(),user.getId());
         return user.getWatchLists();
     }
 
@@ -49,9 +54,10 @@ public class WatchlistServiceImpl implements WatchlistService {
         Movie movie = movieService.getById(watchlistDTO.getMovieId());
         List<Movie> userWatchlist = getUsersWatchlist(user.getId());
         if (!userWatchlist.contains(movie)) {
-            throw new BusinessRuleException(String.format("Movie with id %d is not in the watchlist", movie.getId()));
+            throw new EntityNotFoundException(String.format("Movie with id %d is not in the watchlist", movie.getId()));
         }
         userWatchlist.remove(movie);
+        logger.info("Deleting movie {}(Id={}) from {} {} Id={} watchlist.",movie.getName(),movie.getId(),user.getFirstName(),user.getLastName(),user.getId());
         userService.saveUser(user);
     }
 

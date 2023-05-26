@@ -21,7 +21,7 @@ spring:
         format_sql: yes
     hibernate:
       ddl-auto: none
-    show-sql: yes
+    show-sql: no
   mail:
     host: smtp.gmail.com
     port: 587

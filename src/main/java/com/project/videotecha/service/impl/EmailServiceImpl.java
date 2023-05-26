@@ -19,7 +19,6 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void sendEmail(EmailDetailDto detail) throws MessagingException {
-
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         helper.setTo(detail.getUserEmail());

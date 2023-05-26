@@ -1,7 +1,6 @@
 package com.project.videotecha.converter;
 
 import jakarta.persistence.AttributeConverter;
-import jakarta.persistence.Converter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
