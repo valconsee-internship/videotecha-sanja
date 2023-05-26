@@ -38,4 +38,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException(format("Not found user with ID %s", userId)));
     }
+
+    @Override
+    public User getByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException(format("Not found user with email %s", email)));
+    }
+
+
 }

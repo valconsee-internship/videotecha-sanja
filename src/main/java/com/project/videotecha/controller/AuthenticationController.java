@@ -1,5 +1,6 @@
 package com.project.videotecha.controller;
 
+import com.project.videotecha.dto.LoginDto;
 import com.project.videotecha.controller.api.AuthenticationControllerApi;
 import com.project.videotecha.dto.RegistrationDataDto;
 import com.project.videotecha.dto.UserDto;
@@ -27,6 +28,11 @@ public class AuthenticationController implements AuthenticationControllerApi {
     public UserDto registerUser(@Valid @RequestBody RegistrationDataDto registrationData) {
         return UserMapper.mapUserToUserDto(authenticationService.registerUser(UserMapper
                 .mapRegistrationDataDtoToUser(registrationData)));
+    }
+
+    @PostMapping("login")
+    public String login(@Valid @RequestBody LoginDto dto) {
+        return authenticationService.login(dto.getEmail(), dto.getPassword());
     }
 
 }
