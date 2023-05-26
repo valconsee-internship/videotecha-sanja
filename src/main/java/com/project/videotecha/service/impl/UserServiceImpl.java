@@ -4,6 +4,8 @@ import com.project.videotecha.exception.EntityNotFoundException;
 import com.project.videotecha.model.User;
 import com.project.videotecha.repository.UserRepository;
 import com.project.videotecha.service.UserService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -40,5 +42,10 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new EntityNotFoundException(format("Not found user with email %s", email)));
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByEmail(username)
+                .orElseThrow(() -> new EntityNotFoundException(format("Not found user with email %s", username)));
+    }
 
 }

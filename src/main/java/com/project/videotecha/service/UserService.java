@@ -1,10 +1,11 @@
 package com.project.videotecha.service;
 
 import com.project.videotecha.model.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Collection;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
     Collection<User> getAll();
 
     User saveUser(User newUser);

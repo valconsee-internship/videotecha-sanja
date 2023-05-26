@@ -5,6 +5,7 @@ import com.project.videotecha.dto.MovieDto;
 import com.project.videotecha.mapper.MovieMapper;
 import com.project.videotecha.service.WatchlistService;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,11 +22,13 @@ public class WatchlistController {
         this.watchlistService = watchlistService;
     }
 
+    @PreAuthorize("hasAuthority('ROLE_REGISTERED')")
     @PostMapping
     public MovieDto addToWatchlist(@RequestBody @Valid WatchlistDTO watchlistDTO) {
         return MovieMapper.mapToDto(watchlistService.addToWatchlist(watchlistDTO));
     }
 
+    @PreAuthorize("hasAuthority('ROLE_REGISTERED')")
     @DeleteMapping
     public void deleteFromWatchlist(@RequestBody @Valid WatchlistDTO watchlistDTO) {
         watchlistService.deleteFromWatchlist(watchlistDTO);

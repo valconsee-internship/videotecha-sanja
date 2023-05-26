@@ -6,6 +6,7 @@ import com.project.videotecha.dto.UserDto;
 import com.project.videotecha.mapper.MovieMapper;
 import com.project.videotecha.mapper.UserMapper;
 import com.project.videotecha.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import com.project.videotecha.service.WatchlistService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,6 @@ import java.util.List;
 @RestController
 @RequestMapping("users")
 public class UserController implements UserControllerApi {
-
     private final UserService userService;
 
     private final WatchlistService watchlistService;
@@ -28,11 +28,13 @@ public class UserController implements UserControllerApi {
         this.watchlistService = watchlistService;
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping
     public Collection<UserDto> getAll() {
         return UserMapper.mapToDtos(userService.getAll());
     }
 
+    @PreAuthorize("hasAuthority('ROLE_REGISTERED')")
     @GetMapping("{id}/watchlist")
     public List<MovieDto> getUsersWatchlist(@PathVariable Long id) {
         return watchlistService.getUsersWatchlist(id)
