@@ -1,6 +1,7 @@
 package com.project.videotecha.config;
 
 import com.project.videotecha.service.TokenService;
+import com.project.videotecha.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,11 +21,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final TokenService tokenService;
 
-    private final UserDetailsService userDetailsService;
+    private final UserService userService;
 
-    public JwtAuthenticationFilter(TokenService tokenService, UserDetailsService userDetailsService) {
+    public JwtAuthenticationFilter(TokenService tokenService, UserService userService) {
         this.tokenService = tokenService;
-        this.userDetailsService = userDetailsService;
+        this.userService = userService;
     }
 
     @Override
@@ -42,7 +43,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         userEmail = tokenService.extractUsername(jwt);
 
         if (userEmail != null) {
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+            UserDetails userDetails = this.userService.loadUserByUsername(userEmail);
             if (tokenService.isTokenValid(jwt, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,

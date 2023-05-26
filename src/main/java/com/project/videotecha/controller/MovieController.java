@@ -49,13 +49,12 @@ public class MovieController implements MovieControllerApi {
         movieService.delete(id);
     }
 
-    @PreAuthorize("hasAuthority(['ROLE_ADMIN', 'ROLE_REGISTERED'])")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_REGISTERED')")
     @GetMapping("/{id}")
     public MovieDto getById(@PathVariable Long id) {
         return MovieMapper.mapToDto(movieService.getById(id));
     }
 
-    @Secured({"ROLE_ADMIN", "ROLE_REGISTERED"})
     @GetMapping
     public List<MovieDto> getAll() {
         return MovieMapper.mapToMovieDtos(movieService.getAll());

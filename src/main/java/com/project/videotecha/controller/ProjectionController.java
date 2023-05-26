@@ -7,6 +7,7 @@ import com.project.videotecha.mapper.ProjectionMapper;
 import com.project.videotecha.service.ProjectionService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,22 +28,26 @@ public class ProjectionController implements ProjectionControllerApi {
         this.projectionService = projectionService;
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ProjectionDto create(@Valid @RequestBody ProjectionCreationDto dto) {
         return ProjectionMapper.mapProjectionToProjectionDto(projectionService.create(dto));
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         projectionService.delete(id);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_REGISTERED')")
     @GetMapping("/{id}")
     public ProjectionDto getById(@PathVariable Long id) {
         return ProjectionMapper.mapProjectionToProjectionDto(projectionService.getById(id));
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_REGISTERED')")
     @GetMapping("/available")
     public List<ProjectionDto> getProjectionsWithAvailableSeats() {
         return ProjectionMapper.mapProjectionToProjectionDtos(projectionService.getAvailableProjections());
