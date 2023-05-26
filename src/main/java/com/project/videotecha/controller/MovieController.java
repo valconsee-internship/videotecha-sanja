@@ -3,11 +3,13 @@ package com.project.videotecha.controller;
 import com.project.videotecha.controller.api.MovieControllerApi;
 import com.project.videotecha.dto.MovieCreationDto;
 import com.project.videotecha.dto.MovieDto;
+import com.project.videotecha.dto.MovieImdbDetailsDto;
 import com.project.videotecha.dto.MovieImdbIdDto;
 import com.project.videotecha.dto.UpdateMovieDto;
 import com.project.videotecha.mapper.MovieImdbMapper;
 import com.project.videotecha.mapper.MovieMapper;
 import com.project.videotecha.service.MovieService;
+import com.project.videotecha.service.OmdbService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,8 +30,11 @@ import java.util.List;
 public class MovieController implements MovieControllerApi {
     private final MovieService movieService;
 
-    public MovieController(MovieService movieService) {
+    private final OmdbService omdbService;
+
+    public MovieController(MovieService movieService, OmdbService omdbService) {
         this.movieService = movieService;
+        this.omdbService = omdbService;
     }
 
     @PostMapping
@@ -61,6 +66,11 @@ public class MovieController implements MovieControllerApi {
     @PatchMapping
     public MovieImdbIdDto addImdbId(@RequestBody @Valid UpdateMovieDto updateMovieDto) {
         return MovieImdbMapper.toDto(movieService.updateMovieImdbId(updateMovieDto));
+    }
+
+    @GetMapping("{imdbId}/details")
+    public MovieImdbDetailsDto movieDetailsFromImdb(@PathVariable String imdbId) {
+        return omdbService.getMovieDetailsFromImdb(imdbId);
     }
 
 }

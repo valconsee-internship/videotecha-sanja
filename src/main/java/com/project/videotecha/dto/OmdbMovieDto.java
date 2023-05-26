@@ -7,18 +7,18 @@ import java.io.Serializable;
 public class OmdbMovieDto implements Serializable {
 
     @JsonProperty("Title")
-    private String title;
+    private final String title;
 
     @JsonProperty("Year")
-    private String year;
+    private final String year;
 
-    private String imdbID;
+    private final String imdbID;
 
     @JsonProperty("Type")
-    private String type;
+    private final String type;
 
     @JsonProperty("Poster")
-    private String poster;
+    private final String poster;
 
     public OmdbMovieDto(String title, String year, String imdbID, String type, String poster) {
         this.title = title;
@@ -48,23 +48,4 @@ public class OmdbMovieDto implements Serializable {
         return poster;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public void setImdbID(String imdbID) {
-        this.imdbID = imdbID;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setPoster(String poster) {
-        this.poster = poster;
-    }
 }
