@@ -5,7 +5,7 @@ import com.project.videotecha.model.enums.MovieGenre;
 import java.io.Serializable;
 import java.util.List;
 
-public class MovieImdbIdDto implements Serializable {
+public class MovieDetailsDto implements Serializable {
 
     private final Long id;
     private final String name;
@@ -15,7 +15,7 @@ public class MovieImdbIdDto implements Serializable {
     private final List<MovieGenre> movieGenres;
     private final String imdbId;
 
-    public MovieImdbIdDto(Long id, String name, String director, int length, String description, List<MovieGenre> movieGenres, String imdbId) {
+    public MovieDetailsDto(Long id, String name, String director, int length, String description, List<MovieGenre> movieGenres, String imdbId) {
         this.id = id;
         this.name = name;
         this.director = director;

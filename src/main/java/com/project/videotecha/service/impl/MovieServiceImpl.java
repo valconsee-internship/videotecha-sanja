@@ -1,6 +1,5 @@
 package com.project.videotecha.service.impl;
 
-import com.project.videotecha.dto.MovieImdbIdDto;
 import com.project.videotecha.dto.UpdateMovieDto;
 import com.project.videotecha.exception.EntityNotFoundException;
 import com.project.videotecha.exception.MovieHasFutureProjectionsException;

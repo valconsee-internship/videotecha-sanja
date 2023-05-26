@@ -1,14 +1,10 @@
 package com.project.videotecha.service.impl;
 
-import com.project.videotecha.dto.MovieImdbDetailsDto;
+import com.project.videotecha.dto.MovieDetailsFromOmdbApiDto;
 import com.project.videotecha.dto.OmdbSearchResultDto;
-import com.project.videotecha.exception.BusinessRuleException;
+import com.project.videotecha.exception.EntityNotFoundException;
 import com.project.videotecha.service.OmdbService;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -34,17 +30,17 @@ public class OmdbServiceImpl implements OmdbService {
             ResponseEntity<OmdbSearchResultDto> searchResult = restTemplate.getForEntity(urlTitle + title, OmdbSearchResultDto.class);
             return searchResult.getBody();
         } catch (Exception e) {
-            throw new BusinessRuleException("Error getting movies from OMDB API");
+            throw new EntityNotFoundException("Error getting movies from OMDB API");
         }
     }
 
     @Override
-    public MovieImdbDetailsDto getMovieDetailsFromImdb(String imdbId) {
+    public MovieDetailsFromOmdbApiDto getMovieDetailsFromOmdb(String imdbId) {
         try {
-            ResponseEntity<MovieImdbDetailsDto> searchResult = restTemplate.getForEntity(urlImdbID + imdbId, MovieImdbDetailsDto.class);
+            ResponseEntity<MovieDetailsFromOmdbApiDto> searchResult = restTemplate.getForEntity(urlImdbID + imdbId, MovieDetailsFromOmdbApiDto.class);
             return searchResult.getBody();
         } catch (Exception e) {
-            throw new BusinessRuleException("Error getting movie details from OMDB API");
+            throw new EntityNotFoundException("Error getting movie details from OMDB API");
         }
     }
 

@@ -1,5 +1,6 @@
 package com.project.videotecha.controller;
 
+import com.project.videotecha.dto.MovieDetailsFromOmdbApiDto;
 import com.project.videotecha.dto.OmdbSearchResultDto;
 import com.project.videotecha.service.OmdbService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,11 @@ public class OmdbController {
     @GetMapping("{title}")
     public OmdbSearchResultDto getMoviesFromOmdb(@PathVariable String title) {
         return omdbService.searchMoviesFromOmdb(title);
+    }
+
+    @GetMapping("{imdbId}/details")
+    public MovieDetailsFromOmdbApiDto movieDetailsFromOmdb(@PathVariable String imdbId) {
+        return omdbService.getMovieDetailsFromOmdb(imdbId);
     }
 
 }
