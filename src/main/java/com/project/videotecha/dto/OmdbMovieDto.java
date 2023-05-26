@@ -1,18 +1,24 @@
 package com.project.videotecha.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 public class OmdbMovieDto implements Serializable {
 
-    private final String title;
+    @JsonProperty("Title")
+    private String title;
 
-    private final String year;
+    @JsonProperty("Year")
+    private String year;
 
-    private final String imdbID;
+    private String imdbID;
 
-    private final String type;
+    @JsonProperty("Type")
+    private String type;
 
-    private final String poster;
+    @JsonProperty("Poster")
+    private String poster;
 
     public OmdbMovieDto(String title, String year, String imdbID, String type, String poster) {
         this.title = title;
@@ -42,4 +48,23 @@ public class OmdbMovieDto implements Serializable {
         return poster;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public void setImdbID(String imdbID) {
+        this.imdbID = imdbID;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
 }

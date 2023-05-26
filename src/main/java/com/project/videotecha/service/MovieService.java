@@ -1,5 +1,7 @@
 package com.project.videotecha.service;
 
+import com.project.videotecha.dto.MovieImdbIdDto;
+import com.project.videotecha.dto.UpdateMovieDto;
 import com.project.videotecha.model.Movie;
 import com.project.videotecha.model.Projection;
 
@@ -17,4 +19,7 @@ public interface MovieService {
     Movie getById(Long id);
 
     boolean hasPassed(Projection p);
+
+    Movie updateMovieImdbId(UpdateMovieDto updateMovieDto);
+
 }

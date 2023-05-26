@@ -3,6 +3,7 @@ package com.project.videotecha.controller.api;
 import com.project.videotecha.dto.ExceptionDto;
 import com.project.videotecha.dto.MovieCreationDto;
 import com.project.videotecha.dto.MovieDto;
+import com.project.videotecha.dto.MovieImdbIdDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -47,7 +48,7 @@ public interface MovieControllerApi {
             @ApiResponse(responseCode = "404", description = "Movie with this id not found.",
                     content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDto.class))})
     })
-    MovieDto getById(@Parameter(description = "Id of movie to be found") Long id);
+    MovieImdbIdDto getById(@Parameter(description = "Id of movie to be found") Long id);
 
 
     @Operation(summary = "Find all movies.")

@@ -1,13 +1,16 @@
 package com.project.videotecha.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.List;
 
 public class OmdbSearchResultDto implements Serializable {
 
-    private final List<OmdbMovieDto> search;
+    @JsonProperty("Search")
+    private List<OmdbMovieDto> search;
 
-    private final String totalResults;
+    private String totalResults;
 
     public OmdbSearchResultDto(List<OmdbMovieDto> search, String totalResults) {
         this.search = search;
@@ -16,6 +19,14 @@ public class OmdbSearchResultDto implements Serializable {
 
     public List<OmdbMovieDto> getSearch() {
         return search;
+    }
+
+    public void setSearch(List<OmdbMovieDto> search) {
+        this.search = search;
+    }
+
+    public void setTotalResults(String totalResults) {
+        this.totalResults = totalResults;
     }
 
     public String getTotalResults() {
